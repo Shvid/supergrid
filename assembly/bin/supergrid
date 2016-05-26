@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+BIN=`dirname "$0"`
+pushd $BIN/../log 1> /dev/null
+
+. ../bin/config
+
+MAIN=com.shvid.suprtgrid.console.Supergrid
+
+"$JAVA" -server -classpath ${CLASSPATH} ${JAVA_OPTS} ${ARGS} -Duser="$USER" -Dclib.dir=../clib "$MAIN" $@
+
+popd 1> /dev/null
+
+
