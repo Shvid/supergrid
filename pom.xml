@@ -22,6 +22,14 @@
      <module>supergrid-server</module>
   </modules>	
 	
+  <developers>
+    <developer>
+      <id>alexshvid</id>
+      <name>Alex Shvid</name>
+      <email>alex@shvid.com</email>
+    </developer>
+  </developers>	
+	
 	<scm>
 		<developerConnection>scm:git:git@github.com:Shvid/supergrid.git</developerConnection>
 		<connection>scm:git:git://github.com/Shvid/supergrid.git</connection>
