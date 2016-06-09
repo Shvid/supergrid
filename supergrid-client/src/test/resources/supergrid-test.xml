@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<supergrid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="supergrid.xsd"
+         updateCheck="false" monitoring="autodetect"
+         name="supergrid-test">
+
+    <endpoint name="clusterA" >
+          
+      <server host="localhost" port="5000" />
+      
+      <auth
+         user="test"
+         password="test"
+         />
+
+    </endpoint>
+
+    <endpoint name="clusterB" >
+      
+      <server host="localhost" port="7000" />
+      
+      <auth
+         user="test"
+         password="test"
+         />
+
+    </endpoint>
+
+    <client name="super-app" namespace="test">
+
+      <group topology="single">
+         <active name="clusterA" />
+      </group>
+
+      <group topology="failover">
+         <active name="clusterA" />
+         <standby name="clusterB" />
+      </group>
+    
+      <group topology="active-active">
+         <active name="clusterA" />
+         <active name="clusterB" />
+      </group>
+    
+      <entry
+         time-to-live="300"
+         />
+         
+      <get-operation
+         timeout-millis="100"
+         />   
+
+      <set-operation
+         timeout-millis="100"
+         />       
+    
+    </client>
+
+    <keyspace name="Account" namespace="test" />
+
+    <default-cache keyspace="Account" namespace="test">
+    </default-cache>
+    
+    <cache name="TestCache" keyspace="Account">
+
+      <entry
+         time-to-live="300"
+         />
+         
+      <get-operation
+         timeout-millis="100"
+         />   
+
+      <set-operation
+         timeout-millis="100"
+         />   
+
+    </cache>
+
+</supergrid>
