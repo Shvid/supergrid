@@ -9,8 +9,10 @@
       <server host="localhost" port="5000" />
       
       <auth
+         salt="35235235235"
+         timestamp="2342342324"
          user="test"
-         password="test"
+         password="GnfnDngmF"
          />
 
     </endpoint>
@@ -20,8 +22,10 @@
       <server host="localhost" port="7000" />
       
       <auth
+         salt="35235235235"
+         timestamp="2342342324"      
          user="test"
-         password="test"
+         password="GnfnDngmF"
          />
 
     </endpoint>

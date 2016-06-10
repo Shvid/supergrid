@@ -11,22 +11,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.api;
+package com.shvid.supergrid.client.config.xml;
 
-import com.shvid.supergrid.support.NamespaceNotFoundException;
+/**
+ * EnumParser
+ * 
+ * @author Alex Shvid
+ *
+ * @param <E> - enum
+ */
 
-public interface SupergridFactory {
+public interface EnumParser<E extends Enum<E>> {
 
 	/**
-	 * Connects to the remote cluster
+	 * Parses string value
 	 * 
-	 * @param url
-	 * @param namespace
-	 * @return
-	 * @throws NamespaceNotFoundException
+	 * @param value - string value
+	 * @return enum instance
 	 */
 	
-	SupergridClient connect(String url, String namespace) throws NamespaceNotFoundException;
+	E parse(String value);
 	
 }
-
