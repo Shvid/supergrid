@@ -79,14 +79,21 @@ abstract class AbstractConfigDocument {
 	}
 
 	protected String getString(NamedNodeMap attributes, String name) {
+		return getString(attributes, name, null);
+	}
+	
+	protected String getString(NamedNodeMap attributes, String name, String defaultValue) {
 		Node attribute = attributes.getNamedItem(name);
 		if (attribute != null) {
 			String val = attribute.getNodeValue();
 			if (val != null && val.length() > 0) {
-				return propertyPlaceholder.replaceAll(val);
+				val = propertyPlaceholder.replaceAll(val);
+				if (val != null && val.length() > 0) {
+					return val;
+				}
 			}
 		}
-		return null;
+		return defaultValue;
 	}
 	
 	protected Integer getInteger(NamedNodeMap attributes, String name) {

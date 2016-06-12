@@ -4,26 +4,22 @@
          updateCheck="false" monitoring="autodetect"
          name="supergrid-test">
 
-    <endpoint name="clusterA" >
+    <endpoint name="clusterA">
           
       <server host="localhost" port="5000" />
       
       <auth
-         salt="35235235235"
-         timestamp="2342342324"
          user="test"
          password="GnfnDngmF"
          />
 
     </endpoint>
 
-    <endpoint name="clusterB" >
+    <endpoint name="clusterB">
       
       <server host="localhost" port="7000" />
       
       <auth
-         salt="35235235235"
-         timestamp="2342342324"      
          user="test"
          password="GnfnDngmF"
          />
@@ -32,22 +28,22 @@
 
     <client name="super-app" namespace="test">
 
-      <group topology="single">
-         <active name="clusterA" />
-      </group>
+      <topology type="single">
+         <active endpoint="clusterA" />
+      </topology>
 
-      <group topology="failover">
-         <active name="clusterA" />
-         <standby name="clusterB" />
-      </group>
+      <topology type="failover">
+         <active endpoint="clusterA" />
+         <standby endpoint="clusterB" />
+      </topology>
     
-      <group topology="active-active">
-         <active name="clusterA" />
-         <active name="clusterB" />
-      </group>
+      <topology type="active-active">
+         <active endpoint="clusterA" />
+         <active endpoint="clusterB" />
+      </topology>
     
       <entry
-         time-to-live="300"
+         ttl-seconds="300"
          />
          
       <get-operation
@@ -60,15 +56,28 @@
     
     </client>
 
-    <keyspace name="Account" namespace="test" />
+    <keyspace name="Account" namespace="test" mode="partitioned" />
 
-    <default-cache keyspace="Account" namespace="test">
-    </default-cache>
+    <cache-mapping pattern="*" keyspace="Account">
+    
+      <entry
+         ttl-seconds="300"
+         />
+         
+      <get-operation
+         timeout-millis="100"
+         />   
+
+      <set-operation
+         timeout-millis="100"
+         />       
+    
+    </cache-mapping>
     
     <cache name="TestCache" keyspace="Account">
 
       <entry
-         time-to-live="300"
+         ttl-seconds="300"
          />
          
       <get-operation
