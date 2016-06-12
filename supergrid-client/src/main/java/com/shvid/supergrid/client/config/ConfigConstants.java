@@ -13,6 +13,8 @@
  */
 package com.shvid.supergrid.client.config;
 
+import com.shvid.supergrid.api.SupergridConstants;
+
 /**
  * Config Constants
  * 
@@ -37,4 +39,10 @@ public final class ConfigConstants {
 	
 	public static final String DEFAULT_PASSWORD = "test";
 	
+	public static final int DEFAULT_TTL = SupergridConstants.UNSET_TTL;
+	
+	public static final int DEFAULT_TIMEOUT = SupergridConstants.UNSET_TIMEOUT;
+
+	public static final String DEFAULT_PATTERN = "*";
+
 }

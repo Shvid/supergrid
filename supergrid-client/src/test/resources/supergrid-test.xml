@@ -56,7 +56,7 @@
     
     </client>
 
-    <keyspace name="Account" namespace="test" mode="partitioned" />
+    <keyspace name="Account" namespace="test" data-distribution="partitioned" />
 
     <cache-mapping pattern="*" keyspace="Account">
     

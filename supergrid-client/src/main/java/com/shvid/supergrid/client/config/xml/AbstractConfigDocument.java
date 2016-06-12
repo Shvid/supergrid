@@ -77,6 +77,14 @@ abstract class AbstractConfigDocument {
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 		return docBuilder.parse(is);
 	}
+	
+	protected NamedNodeMap getAttributes(Node node) {
+		NamedNodeMap attributes = node.getAttributes();
+		if (attributes == null) {
+			throw new IllegalStateException("invalid xml node");
+		}
+		return attributes;
+	}
 
 	protected String getString(NamedNodeMap attributes, String name) {
 		return getString(attributes, name, null);
@@ -135,13 +143,17 @@ abstract class AbstractConfigDocument {
 		}
 		return defaultValue;
 	}
-	
+
 	protected <E extends Enum<E>> E getEnum(NamedNodeMap attributes, String name, EnumParser<E> parser) {
+		return getEnum(attributes, name, parser, null);
+	}
+	
+	protected <E extends Enum<E>> E getEnum(NamedNodeMap attributes, String name, EnumParser<E> parser, E defaultValue) {
 		String str = getString(attributes, name);
 		if (str != null) {
 			return parser.parse(str);
 		}
-		return null;
+		return defaultValue;
 	}
 	
 }

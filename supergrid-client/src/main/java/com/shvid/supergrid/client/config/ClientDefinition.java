@@ -13,6 +13,8 @@
  */
 package com.shvid.supergrid.client.config;
 
+import com.google.common.base.Optional;
+
 /**
  * Client Definition
  * 
@@ -39,12 +41,12 @@ public interface ClientDefinition {
 	String getNamespace();
 	
 	/**
-	 * Gets connection group
+	 * Gets topology
 	 * 
-	 * @return not null group
+	 * @return not null topology definition
 	 */
 	
-	TopologyDefinition getGroup();
+	TopologyDefinition getTopology();
 	
 	/**
 	 * Gets entry default parameters
@@ -52,7 +54,7 @@ public interface ClientDefinition {
 	 * @return not empty entry parameters
 	 */
 	
-	EntryDefinition getEntry();
+	Optional<EntryDefinition> getEntry();
 	
 	/**
 	 * Gets get operation parameters
@@ -60,7 +62,7 @@ public interface ClientDefinition {
 	 * @return not empty get operation parameters
 	 */
 	
-	GetOperationDefinition getGetOperation();
+	Optional<GetOperationDefinition> getGetOperation();
 
 	/**
 	 * Sets set operation parameters
@@ -68,6 +70,6 @@ public interface ClientDefinition {
 	 * @return not empty set operation parameters
 	 */
 	
-	SetOperationDefinition getSetOperation();
+	Optional<SetOperationDefinition> getSetOperation();
 
 }

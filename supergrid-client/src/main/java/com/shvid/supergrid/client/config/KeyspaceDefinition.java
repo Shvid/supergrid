@@ -13,6 +13,8 @@
  */
 package com.shvid.supergrid.client.config;
 
+import com.google.common.base.Optional;
+
 /**
  * Keyspace Definition
  * 
@@ -36,14 +38,14 @@ public interface KeyspaceDefinition {
 	 * @return not null namespace or test
 	 */
 	
-	String getNamespace();
+	Optional<String> getNamespace();
 	
 	/**
-	 * Gets keyspace mode
+	 * Gets data distribution
 	 * 
-	 * @return not null keyspace mode
+	 * @return not null data distribution
 	 */
 	
-	KeyspaceMode getMode();
+	DataDistributionType getDataDistribution();
 	
 }

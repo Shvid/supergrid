@@ -13,6 +13,7 @@
  */
 package com.shvid.supergrid.client.config;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,5 +43,43 @@ public interface SupergridDefinition {
 	 */
 	
 	Map<String, EndpointDefinition> getEndpoints();
+	
+	/**
+	 * Gets client definition
+	 * 
+	 * @return not null client definition
+	 */
+	
+	ClientDefinition getClient();
+	
+	/**
+	 * Gets keyspace definitions
+	 * 
+	 * key is the keyspace name
+	 * value is the keyspace definition
+	 * 
+	 * @return not null map
+	 */
+	
+	Map<String, KeyspaceDefinition> getKeyspaces();
+	
+	/**
+	 * Gets cache mapping definitions
+	 * 
+	 * @return not null list
+	 */
+	
+	List<CacheMappingDefinition> getCacheMappings();
+	
+	/**
+	 * Gets cache definitions
+	 * 
+	 * key is the cache name
+	 * value is the cache definition
+	 * 
+	 * @return not null map
+	 */
+	
+	Map<String, CacheDefinition> getCacheDefinitions();
 	
 }

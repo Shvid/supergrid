@@ -17,29 +17,29 @@ import com.shvid.supergrid.client.config.xml.EnumParser;
 import com.shvid.supergrid.support.SupergridConfigException;
 
 /**
- * Keyspace Mode
+ * Data Distribution Type
  * 
  * @author Alex Shvid
  *
  */
 
-public enum KeyspaceMode {
+public enum DataDistributionType {
 
 	/**
-	 * Partitioned keyspace
+	 * Partitioned data
 	 */
 	
 	PARTITIONED("partitioned"),
 	
 	/**
-	 * Replicated keyspace 
+	 * Replicated data 
 	 */
 	
 	REPLICATED("replicated");
 	
 	private final String name;
 	
-	private KeyspaceMode(String name) {
+	private DataDistributionType(String name) {
 		this.name = name;
 	}
 	
@@ -47,14 +47,14 @@ public enum KeyspaceMode {
 		return name;
 	}
 	
-	public enum Parser implements EnumParser<KeyspaceMode> {
+	public enum Parser implements EnumParser<DataDistributionType> {
 		
 		INSTANCE;
 
 		@Override
-		public KeyspaceMode parse(String value) {
+		public DataDistributionType parse(String value) {
 			
-			for (KeyspaceMode type : KeyspaceMode.values()) {
+			for (DataDistributionType type : DataDistributionType.values()) {
 				if (type.getName().equalsIgnoreCase(value)) {
 					return type;
 				}
