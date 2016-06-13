@@ -22,7 +22,7 @@ import com.google.common.base.Optional;
  *
  */
 
-public interface ClientDefinition {
+public interface ClientDefinition extends OptionalSettingsDefinition {
 
 	/**
 	 * Gets name of the client application
@@ -47,29 +47,5 @@ public interface ClientDefinition {
 	 */
 	
 	TopologyDefinition getTopology();
-	
-	/**
-	 * Gets entry default parameters
-	 * 
-	 * @return not empty entry parameters
-	 */
-	
-	Optional<EntryDefinition> getEntry();
-	
-	/**
-	 * Gets get operation parameters
-	 * 
-	 * @return not empty get operation parameters
-	 */
-	
-	Optional<GetOperationDefinition> getGetOperation();
-
-	/**
-	 * Sets set operation parameters
-	 * 
-	 * @return not empty set operation parameters
-	 */
-	
-	Optional<SetOperationDefinition> getSetOperation();
 
 }

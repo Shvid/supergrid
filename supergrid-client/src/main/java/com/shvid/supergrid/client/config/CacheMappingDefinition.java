@@ -13,7 +13,6 @@
  */
 package com.shvid.supergrid.client.config;
 
-import com.google.common.base.Optional;
 
 /**
  * Cache Mapping Definition
@@ -22,7 +21,7 @@ import com.google.common.base.Optional;
  *
  */
 
-public interface CacheMappingDefinition {
+public interface CacheMappingDefinition extends OptionalSettingsDefinition {
 
 	/**
 	 * Gets pattern of the cache name
@@ -40,28 +39,4 @@ public interface CacheMappingDefinition {
 	
 	String getKeyspace();
 
-	/**
-	 * Gets entry default parameters
-	 * 
-	 * @return not empty entry parameters
-	 */
-	
-	Optional<EntryDefinition> getEntry();
-	
-	/**
-	 * Gets get operation parameters
-	 * 
-	 * @return not empty get operation parameters
-	 */
-	
-	Optional<GetOperationDefinition> getGetOperation();
-
-	/**
-	 * Sets set operation parameters
-	 * 
-	 * @return not empty set operation parameters
-	 */
-	
-	Optional<SetOperationDefinition> getSetOperation();
-	
 }

@@ -2,19 +2,15 @@ package com.shvid.supergrid.client.config.xml;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
@@ -30,6 +26,7 @@ import com.shvid.supergrid.client.config.EndpointRole;
 import com.shvid.supergrid.client.config.EntryDefinition;
 import com.shvid.supergrid.client.config.GetOperationDefinition;
 import com.shvid.supergrid.client.config.KeyspaceDefinition;
+import com.shvid.supergrid.client.config.OptionalSettingsDefinition;
 import com.shvid.supergrid.client.config.ServerDefinition;
 import com.shvid.supergrid.client.config.SetOperationDefinition;
 import com.shvid.supergrid.client.config.SupergridDefinition;
@@ -76,19 +73,19 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 	
 	private final SupergridElement supergridElement;
 	
-	public SupergridConfigDocument(URL url, Properties props) throws ParserConfigurationException, MalformedURLException, SAXException, IOException {
+	public SupergridConfigDocument(URL url, Properties props) throws IOException {
 		super(props);
 		Document doc = parseDocument(url);
 		this.supergridElement = new SupergridElement(doc);
 	}
 	
-	public SupergridConfigDocument(InputStream is, Properties props) throws ParserConfigurationException, SAXException, IOException {
+	public SupergridConfigDocument(InputStream is, Properties props) throws IOException {
 		super(props);
 		Document doc = parseDocument(is);
 		this.supergridElement = new SupergridElement(doc);
 	}
 	
-	public SupergridElement getRoot() {
+	public SupergridDefinition getRoot() {
 		return supergridElement;
 	}
 	
@@ -184,7 +181,7 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 		}
 
 		@Override
-		public Map<String, CacheDefinition> getCacheDefinitions() {
+		public Map<String, CacheDefinition> getCaches() {
 			return caches;
 		}
 		
@@ -553,7 +550,7 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 
 	}
 	
-	public abstract class AbstractOptionalConfigurations {
+	public abstract class AbstractOptionalConfigurations implements OptionalSettingsDefinition {
 		
 		private final Optional<EntryDefinition> entry;
 		private final Optional<GetOperationDefinition> getOperation;
@@ -586,14 +583,17 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 			this.setOperation = Optional.fromNullable(setOperationElementOrNull);
 		}
 		
+		@Override
 		public Optional<EntryDefinition> getEntry() {
 			return entry;
 		}
 
+		@Override
 		public Optional<GetOperationDefinition> getGetOperation() {
 			return getOperation;
 		}
 
+		@Override
 		public Optional<SetOperationDefinition> getSetOperation() {
 			return setOperation;
 		}

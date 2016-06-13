@@ -13,30 +13,39 @@
  */
 package com.shvid.supergrid.client.config;
 
+import com.google.common.base.Optional;
 
 /**
- * Cache Definition
+ * Optional Settings Definition
  * 
  * @author Alex Shvid
  *
  */
 
-public interface CacheDefinition extends OptionalSettingsDefinition {
+public interface OptionalSettingsDefinition {
 
 	/**
-	 * Gets name of the cache
+	 * Gets entry default parameters
 	 * 
-	 * @return not null name
+	 * @return not empty entry parameters
 	 */
 	
-	String getName(); 
-			
+	Optional<EntryDefinition> getEntry();
+	
 	/**
-	 * Gets keyspace
+	 * Gets get operation parameters
 	 * 
-	 * @return no null keyspace
+	 * @return not empty get operation parameters
 	 */
 	
-  String getKeyspace();
+	Optional<GetOperationDefinition> getGetOperation();
+
+	/**
+	 * Sets set operation parameters
+	 * 
+	 * @return not empty set operation parameters
+	 */
 	
+	Optional<SetOperationDefinition> getSetOperation();
+
 }

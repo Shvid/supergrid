@@ -28,19 +28,23 @@
 
     <client name="super-app" namespace="test">
 
-      <topology type="single">
-         <active endpoint="clusterA" />
-      </topology>
-
       <topology type="failover">
          <active endpoint="clusterA" />
          <standby endpoint="clusterB" />
+      </topology>
+      
+     <!--  
+
+      <topology type="single">
+         <active endpoint="clusterA" />
       </topology>
     
       <topology type="active-active">
          <active endpoint="clusterA" />
          <active endpoint="clusterB" />
       </topology>
+    
+    -->
     
       <entry
          ttl-seconds="300"

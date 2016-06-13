@@ -49,7 +49,7 @@ abstract class AbstractConfigDocument {
 		this.propertyPlaceholder = new PropertyPlaceholder(props);
 	}
 	
-	protected Document parseDocument(URL url) throws IOException, ParserConfigurationException, SAXException {
+	protected Document parseDocument(URL url) throws IOException {
     if (url == null) {
       throw new SupergridConfigException("empty url");
     }
@@ -68,14 +68,19 @@ abstract class AbstractConfigDocument {
 		}
 	}
 	
-	protected Document parseDocument(InputStream is) throws ParserConfigurationException, SAXException, IOException {
+	protected Document parseDocument(InputStream is) throws IOException {
     if (is == null) {
       throw new SupergridConfigException("empty input stream");
     }
 		
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-		return docBuilder.parse(is);
+    try {
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			return docBuilder.parse(is);
+    }
+    catch(ParserConfigurationException | SAXException e) {
+    	throw new IOException(e);
+    }
 	}
 	
 	protected NamedNodeMap getAttributes(Node node) {

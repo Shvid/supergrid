@@ -80,6 +80,6 @@ public interface SupergridDefinition {
 	 * @return not null map
 	 */
 	
-	Map<String, CacheDefinition> getCacheDefinitions();
+	Map<String, CacheDefinition> getCaches();
 	
 }
