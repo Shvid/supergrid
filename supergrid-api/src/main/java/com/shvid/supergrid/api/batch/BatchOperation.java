@@ -13,10 +13,12 @@
  */
 package com.shvid.supergrid.api.batch;
 
+import com.shvid.supergrid.api.SupergridOperation;
+
 
 public class BatchOperation {
 
-	public BatchOperation add(PartitionOperation op) {
+	public BatchOperation add(SupergridOperation op) {
 		return this;
 	}
 	

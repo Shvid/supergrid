@@ -13,19 +13,11 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.schema.SupergridField;
 
-public class CompareAndSetOperation extends FieldOperation {
+public class CompareAndSetOperation {
 
-	public CompareAndSetOperation(SupergridField field) {
-		super(field);
+	public CompareAndSetOperation() {
 	}
 
-	@Override
-	public boolean isReadonly() {
-		return false;
-	}
-	
-	
 	
 }

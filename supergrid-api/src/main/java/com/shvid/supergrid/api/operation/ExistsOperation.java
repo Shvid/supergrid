@@ -13,17 +13,11 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.schema.SupergridField;
 
-public class ExistsOperation extends FieldOperation {
+public class ExistsOperation {
 
-	public ExistsOperation(SupergridField field) {
-		super(field);
+	public ExistsOperation() {
 	}
 	
-	@Override
-	public boolean isReadonly() {
-		return true;
-	}
 
 }

@@ -13,18 +13,13 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.schema.SupergridField;
 
-public class GetOperation extends FieldOperation {
+public class GetOperation  {
 
-	public GetOperation(SupergridField field) {
-		super(field);
+	public GetOperation() {
 	}
 	
-	@Override
-	public boolean isReadonly() {
-		return true;
-	}
+
 
 	
 }

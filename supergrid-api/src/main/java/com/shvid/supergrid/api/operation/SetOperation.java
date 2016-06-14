@@ -11,46 +11,13 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.api.schema;
+package com.shvid.supergrid.api.operation;
 
-/**
- * SupergridField
- * 
- * @author Alex Shvid
- *
- */
 
-public interface SupergridField {
+public class SetOperation {
 
-	/**
-	 * Returns table
-	 * 
-	 * @return not null table
-	 */
+	public SetOperation() {
+	}
 	
-	SupergridTable getTable();
-	
-	/**
-	 * Return immutable fieldId in the table
-	 * 
-	 * @return field tag number
-	 */
-	
-	int getFieldId();
-	
-	/**
-	 * Returns field name, this name is local for table
-	 * 
-	 * @return not null field name
-	 */
-	
-	String getFieldName();
-	
-	/**
-	 * Gets type id
-	 * @return type id
-	 */
-	
-	int getTypeId();
 	
 }
