@@ -40,12 +40,4 @@ public interface KeyspaceDefinition {
 	
 	Optional<String> getNamespace();
 	
-	/**
-	 * Gets data distribution
-	 * 
-	 * @return not null data distribution
-	 */
-	
-	DataDistributionType getDataDistribution();
-	
 }

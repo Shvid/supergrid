@@ -27,7 +27,6 @@ import com.shvid.supergrid.client.config.AuthDefinition;
 import com.shvid.supergrid.client.config.CacheDefinition;
 import com.shvid.supergrid.client.config.CacheMappingDefinition;
 import com.shvid.supergrid.client.config.ClientDefinition;
-import com.shvid.supergrid.client.config.DataDistributionType;
 import com.shvid.supergrid.client.config.EndpointDefinition;
 import com.shvid.supergrid.client.config.EndpointRole;
 import com.shvid.supergrid.client.config.EntryDefinition;
@@ -106,7 +105,6 @@ public class SupergridConfigDocumentTest {
 		Assert.assertNotNull(keyspace);
 
 		Assert.assertEquals("Account", keyspace.getName());
-		Assert.assertEquals(DataDistributionType.PARTITIONED, keyspace.getDataDistribution());
 		Assert.assertTrue(keyspace.getNamespace().isPresent());
 		Assert.assertEquals("test", keyspace.getNamespace().get());
 		

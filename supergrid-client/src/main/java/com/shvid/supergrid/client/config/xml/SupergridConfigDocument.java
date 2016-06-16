@@ -20,7 +20,6 @@ import com.shvid.supergrid.client.config.CacheDefinition;
 import com.shvid.supergrid.client.config.CacheMappingDefinition;
 import com.shvid.supergrid.client.config.ClientDefinition;
 import com.shvid.supergrid.client.config.ConfigConstants;
-import com.shvid.supergrid.client.config.DataDistributionType;
 import com.shvid.supergrid.client.config.EndpointDefinition;
 import com.shvid.supergrid.client.config.EndpointRole;
 import com.shvid.supergrid.client.config.EntryDefinition;
@@ -458,7 +457,6 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 		
 		private final String name;
 		private final Optional<String> namespace;
-		private final DataDistributionType type;
 
 		public KeyspaceElement(Node node) {
 			NamedNodeMap attributes = getAttributes(node);
@@ -466,11 +464,7 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 			
 			String namespaceOrNull = getString(attributes, NAMESPACE_ATTRIBUTE);
 			this.namespace = Optional.fromNullable(namespaceOrNull);
-			
-			this.type = getEnum(attributes, DATA_DISTRIBUTION_ATTRIBUTE, DataDistributionType.Parser.INSTANCE);
-			if (this.type == null) {
-				throw new SupergridConfigException("empty data-distribution in keyspace");
-			}
+		
 		}
 
 		@Override
@@ -481,11 +475,6 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 		@Override
 		public Optional<String> getNamespace() {
 			return namespace;
-		}
-
-		@Override
-		public DataDistributionType getDataDistribution() {
-			return type;
 		}
 
 	}
