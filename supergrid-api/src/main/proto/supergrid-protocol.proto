@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+option java_package = "com.shvid.supergrid.api.proto";
+option java_outer_classname = "SupergridProtos";
+
+message SupergridPayload
+{
+    enum Type
+    {
+        // general payloads    
+        NullPayload = 0;
+        BoolPayload = 1;
+        ValuePayload = 2;
+        ErrorPayload = 3;
+        BatchPayload = 4;
+        MetadataPayload = 5;
+       
+        // common operations
+        ExistPayload = 10;
+        GetPayload = 11;
+        SetPayload = 12;
+        CompareAndSetPayload = 13;
+    }
+
+    Type type = 1;
+    bool boolPayload = 2;
+    
+    // general payloads   
+    ValuePayload valuePayload = 3;
+    ErrorPayload errorPayload = 4;
+    repeated BatchPayload batchPayload = 5;
+    
+    // common operations
+    ExistPayload existPayload = 11;
+    GetPayload getPayload = 12;
+    SetPayload setPayload = 13;
+    CompareAndSetPayload compareAndSetPayload = 14;
+    
+}
+
+
+// general payloads
+
+message ErrorPayload {
+   int32 code = 1;  // error code
+   string message = 2;  
+   string className = 3;
+   string stackTrace = 4; 
+}
+
+message BatchPayload {
+   string key = 1;
+   SupergridPayload payload = 2; 
+}
+
+message ValuePayload {
+   int64 version = 1;    
+   int64 type = 2;    
+   bytes value = 3;
+   bytes minorValue = 4;
+}
+
+message CachePayload {
+   string namespace = 1;
+   string keyspace = 2;
+   string cacheName = 3;
+   int32 typeId = 4;
+}
+
+message MetadataPayload {
+   map<int32, CachePayload> caches = 1;
+}
+
+// common operations
+
+message ExistPayload {
+   oneof test_oneof {
+       int32 cacheId = 1;
+       CachePayload cache = 2;
+   }
+   string superKey = 3;
+   string majorKey = 4;
+   string minorKey = 5;
+   bool anyMinorKey = 6;
+}
+
+message GetPayload {
+   oneof test_oneof {
+       int32 cacheId = 1;
+       CachePayload cache = 2;
+   }
+   string superKey = 3;
+   string majorKey = 4;
+   string minorKey = 5;
+   bool onlyMinorValue = 6;
+}
+
+message SetPayload {
+   oneof test_oneof {
+       int32 cacheId = 1;
+       CachePayload cache = 2;
+   }
+   string superKey = 3;
+   string majorKey = 4;
+   string minorKey = 5;
+   bool allMinorKeys = 6;
+   bytes newValue = 8;
+   bytes newMinorValue = 9;
+   int32 ttlSeconds = 10;      
+}
+
+message CompareAndSetPayload {
+   oneof test_oneof {
+       int32 cacheId = 1;
+       CachePayload cache = 2;
+   }
+   string superKey = 3;
+   string majorKey = 4;
+   string minorKey = 5; 
+   int64 version = 6;
+   bytes newValue = 7;
+   bytes newMinorValue = 8;
+   int32 ttlSeconds = 9;   
+}
+

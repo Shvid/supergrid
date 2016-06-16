@@ -67,7 +67,6 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 	private static final String TTL_SECONDS_ATTRIBUTE = "ttl-seconds";
 	private static final String TIMEOUT_MILLIS_ATTRIBUTE = "timeout-millis";
 	private static final String PATTERN_ATTRIBUTE = "pattern";
-	private static final String DATA_DISTRIBUTION_ATTRIBUTE = "data-distribution";
 	private static final String KEYSPACE_ATTRIBUTE = "keyspace";
 	
 	private final SupergridElement supergridElement;
