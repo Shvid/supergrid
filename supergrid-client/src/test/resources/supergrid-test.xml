@@ -20,7 +20,7 @@
     
     </client>
 
-    <cache-mapping pattern="PRD." keyspace="Account">
+    <cache-mapping pattern="PRD_.+" keyspace="Account">
     
       <settings
          ttl-seconds="200"
@@ -29,9 +29,9 @@
     
     </cache-mapping>
     
-    <cache-mapping pattern="LT." keyspace="Account" />
+    <cache-mapping pattern="LT_.+" keyspace="account" />
     
-    <cache name="TestCache" keyspace="Account">
+    <cache name="TEST_CACHE" keyspace="Account">
 
       <settings
          ttl-seconds="300"
@@ -40,6 +40,6 @@
 
     </cache>
 
-    <cache name="TestCache2" keyspace="Account" />
+    <cache name="test_CaChe2" keyspace="Account" />
 
 </supergrid>

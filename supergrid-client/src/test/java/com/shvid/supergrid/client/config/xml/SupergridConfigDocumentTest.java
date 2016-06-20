@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -68,15 +69,15 @@ public class SupergridConfigDocumentTest {
 		Assert.assertEquals(2, cacheMappings.size());
 		
 		CacheMappingDefinition cacheMapping = cacheMappings.get(0);
-		Assert.assertEquals("PRD.", cacheMapping.getPattern().pattern());
-		Assert.assertEquals("Account", cacheMapping.getKeyspace());
+		assertPrdPattern(cacheMapping.getPattern());
+		Assert.assertEquals("account", cacheMapping.getKeyspace());
 
 	  CacheSettingsDefinition settings = cacheMapping.getSettings();
 		assertCacheSettings(settings, 200, 400);
 		
 		cacheMapping = cacheMappings.get(1);
-		Assert.assertEquals("LT.", cacheMapping.getPattern().pattern());
-		Assert.assertEquals("Account", cacheMapping.getKeyspace());
+		assertLtPattern(cacheMapping.getPattern());
+		Assert.assertEquals("account", cacheMapping.getKeyspace());
 		assertParentCacheSettings(cacheMapping.getSettings());
 		
 		/**
@@ -86,18 +87,18 @@ public class SupergridConfigDocumentTest {
 		Map<String, CacheDefinition> caches = root.getCaches();
 		Assert.assertEquals(2, caches.size());
 		
-		CacheDefinition cache = caches.get("TestCache");
+		CacheDefinition cache = caches.get("TEST_CACHE");
 		Assert.assertNotNull(cache);
 		
-		Assert.assertEquals("TestCache", cache.getName());
-		Assert.assertEquals("Account", cache.getKeyspace());
+		Assert.assertEquals("TEST_CACHE", cache.getName());
+		Assert.assertEquals("account", cache.getKeyspace());
 		assertCacheSettings(cache.getSettings(), 300, 100);
 		
-		cache = caches.get("TestCache2");
+		cache = caches.get("TEST_CACHE2");
 		Assert.assertNotNull(cache);
 		
-		Assert.assertEquals("TestCache2", cache.getName());
-		Assert.assertEquals("Account", cache.getKeyspace());
+		Assert.assertEquals("TEST_CACHE2", cache.getName());
+		Assert.assertEquals("account", cache.getKeyspace());
 		assertParentCacheSettings(cache.getSettings());
 		
 		
@@ -131,6 +132,26 @@ public class SupergridConfigDocumentTest {
 		Assert.assertEquals("test", auth.get().getUser());
 		Assert.assertEquals("GnfnDngmF", auth.get().getPassword());
 		
+		
+	}
+	
+	private void assertPrdPattern(Pattern pattern) {
+		
+		Assert.assertEquals("PRD_.+", pattern.pattern());
+
+		Assert.assertTrue(pattern.matcher("PRD_CACHE_1").matches());
+		Assert.assertFalse(pattern.matcher("0PRD_CACHE_1").matches());
+		Assert.assertFalse(pattern.matcher("PR_CACHE_1").matches());
+		
+	}
+	
+	private void assertLtPattern(Pattern pattern) {
+		
+		Assert.assertEquals("LT_.+", pattern.pattern());
+		
+		Assert.assertTrue(pattern.matcher("LT_CACHE_1").matches());
+		Assert.assertFalse(pattern.matcher("0LT_CACHE_1").matches());
+		Assert.assertFalse(pattern.matcher("LT-CACHE_1").matches());
 		
 	}
 

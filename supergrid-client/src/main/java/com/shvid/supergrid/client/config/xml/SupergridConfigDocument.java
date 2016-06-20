@@ -251,7 +251,7 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 			NamedNodeMap attributes = getAttributes(node);
 			
 			this.pattern = Pattern.compile(getRequiredString(attributes, PATTERN_ATTRIBUTE));
-			this.keyspace = getRequiredString(attributes, KEYSPACE_ATTRIBUTE);
+			this.keyspace = getRequiredString(attributes, KEYSPACE_ATTRIBUTE).toLowerCase();
 			
 		}
 
@@ -277,8 +277,8 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 			
 			NamedNodeMap attributes = getAttributes(node);
 
-			this.name = getRequiredString(attributes, NAME_ATTRIBUTE);
-			this.keyspace = getRequiredString(attributes, KEYSPACE_ATTRIBUTE);
+			this.name = getRequiredString(attributes, NAME_ATTRIBUTE).toUpperCase();
+			this.keyspace = getRequiredString(attributes, KEYSPACE_ATTRIBUTE).toLowerCase();
 
 		}
 
