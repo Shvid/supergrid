@@ -26,18 +26,10 @@ import com.google.common.base.Optional;
 import com.shvid.supergrid.client.config.AuthDefinition;
 import com.shvid.supergrid.client.config.CacheDefinition;
 import com.shvid.supergrid.client.config.CacheMappingDefinition;
+import com.shvid.supergrid.client.config.CacheSettingsDefinition;
 import com.shvid.supergrid.client.config.ClientDefinition;
-import com.shvid.supergrid.client.config.EndpointDefinition;
-import com.shvid.supergrid.client.config.EndpointRole;
-import com.shvid.supergrid.client.config.EntryDefinition;
-import com.shvid.supergrid.client.config.GetOperationDefinition;
-import com.shvid.supergrid.client.config.KeyspaceDefinition;
-import com.shvid.supergrid.client.config.OptionalSettingsDefinition;
 import com.shvid.supergrid.client.config.ServerDefinition;
-import com.shvid.supergrid.client.config.SetOperationDefinition;
 import com.shvid.supergrid.client.config.SupergridDefinition;
-import com.shvid.supergrid.client.config.TopologyDefinition;
-import com.shvid.supergrid.client.config.TopologyType;
 
 /**
  * SupergridConfigDocumentTest
@@ -60,94 +52,80 @@ public class SupergridConfigDocumentTest {
 		Assert.assertEquals("supergrid-test", root.getName());
 		
 		/**
-		 * Test endpoints
-		 */
-		
-		Map<String, EndpointDefinition> endpoints = root.getEndpoints();
-		Assert.assertEquals(2, endpoints.size());
-		
-		EndpointDefinition clusterA = endpoints.get("clusterA");
-		Assert.assertNotNull(clusterA);
-		Assert.assertEquals("clusterA", clusterA.getName());
-    assertEndpointSettings(clusterA, 5000);
-		
-		EndpointDefinition clusterB = endpoints.get("clusterB");
-		Assert.assertNotNull(clusterB);
-		Assert.assertEquals("clusterB", clusterB.getName());
-    assertEndpointSettings(clusterB, 7000);
-
-		/**
 		 * Test client
 		 */
     
     ClientDefinition client = root.getClient();
     Assert.assertEquals("super-app", client.getName());
-    Assert.assertEquals("test", client.getNamespace());
-    
-    TopologyDefinition topology = client.getTopology();
-    Assert.assertEquals(TopologyType.FAILOVER, topology.getType());
-    
-    Map<String, EndpointRole> endpointsRoles = topology.getEndpoints();
-		Assert.assertEquals(2, endpointsRoles.size());
-		Assert.assertEquals(EndpointRole.ACTIVE, endpointsRoles.get("clusterA"));
-		Assert.assertEquals(EndpointRole.STANDBY, endpointsRoles.get("clusterB"));
-		
-		assertOptionalSettings(client);
-		
-		/**
-		 * Test keyspace
-		 */
-		
-		Map<String, KeyspaceDefinition> keyspaces = root.getKeyspaces();
-		Assert.assertEquals(1, keyspaces.size());
-		
-		KeyspaceDefinition keyspace = keyspaces.get("Account");
-		Assert.assertNotNull(keyspace);
-
-		Assert.assertEquals("Account", keyspace.getName());
-		Assert.assertTrue(keyspace.getNamespace().isPresent());
-		Assert.assertEquals("test", keyspace.getNamespace().get());
+    assertClientSettings(client);
+		assertCacheSettings(client.getSettings(), 500, 200);
 		
 		/**
 		 * Test cache-mappings
 		 */
 		
 		List<CacheMappingDefinition> cacheMappings = root.getCacheMappings();
-		Assert.assertEquals(1, cacheMappings.size());
+		Assert.assertEquals(2, cacheMappings.size());
 		
 		CacheMappingDefinition cacheMapping = cacheMappings.get(0);
-		Assert.assertEquals("*", cacheMapping.getPattern());
+		Assert.assertEquals("PRD.", cacheMapping.getPattern().pattern());
 		Assert.assertEquals("Account", cacheMapping.getKeyspace());
 
-		assertOptionalSettings(cacheMapping);
+	  CacheSettingsDefinition settings = cacheMapping.getSettings();
+		assertCacheSettings(settings, 200, 400);
+		
+		cacheMapping = cacheMappings.get(1);
+		Assert.assertEquals("LT.", cacheMapping.getPattern().pattern());
+		Assert.assertEquals("Account", cacheMapping.getKeyspace());
+		assertParentCacheSettings(cacheMapping.getSettings());
 		
 		/**
 		 * Test caches
 		 */
 		
 		Map<String, CacheDefinition> caches = root.getCaches();
-		Assert.assertEquals(1, caches.size());
+		Assert.assertEquals(2, caches.size());
 		
 		CacheDefinition cache = caches.get("TestCache");
 		Assert.assertNotNull(cache);
 		
 		Assert.assertEquals("TestCache", cache.getName());
 		Assert.assertEquals("Account", cache.getKeyspace());
+		assertCacheSettings(cache.getSettings(), 300, 100);
 		
-		assertOptionalSettings(cache);
+		cache = caches.get("TestCache2");
+		Assert.assertNotNull(cache);
+		
+		Assert.assertEquals("TestCache2", cache.getName());
+		Assert.assertEquals("Account", cache.getKeyspace());
+		assertParentCacheSettings(cache.getSettings());
 		
 		
 	}
+
+	private void assertCacheSettings(CacheSettingsDefinition settings, int ttl, int timeout) {
+		Assert.assertEquals(ttl, settings.getTtlSeconds(false));
+		Assert.assertEquals(timeout, settings.getTimeoutMillis(false));
+		Assert.assertEquals(ttl, settings.getTtlSeconds(true));
+		Assert.assertEquals(timeout, settings.getTimeoutMillis(true));
+	}
+
+	private void assertParentCacheSettings(CacheSettingsDefinition settings) {
+		Assert.assertEquals(500, settings.getTtlSeconds(true));
+		Assert.assertEquals(200, settings.getTimeoutMillis(true));
+		Assert.assertEquals(0, settings.getTtlSeconds(false));
+		Assert.assertEquals(0, settings.getTimeoutMillis(false));
+	}
 	
-	private void assertEndpointSettings(EndpointDefinition endpoint, int port) {
+	private void assertClientSettings(ClientDefinition client) {
 		
-		Assert.assertEquals(1, endpoint.getServers().size());
+		Assert.assertEquals(1, client.getServers().size());
 		
-		ServerDefinition server = endpoint.getServers().get(0);
+		ServerDefinition server = client.getServers().get(0);
 		Assert.assertEquals("localhost", server.getHost());
-		Assert.assertEquals(port, server.getPort());
+		Assert.assertEquals(5000, server.getPort());
 		
-		Optional<AuthDefinition> auth = endpoint.getAuthDefinition();
+		Optional<AuthDefinition> auth = client.getAuthDefinition();
 		Assert.assertTrue(auth.isPresent());
 
 		Assert.assertEquals("test", auth.get().getUser());
@@ -155,21 +133,6 @@ public class SupergridConfigDocumentTest {
 		
 		
 	}
-	
-	private void assertOptionalSettings(OptionalSettingsDefinition settings) {
-		
-		Optional<EntryDefinition> entry = settings.getEntry();
-		Assert.assertTrue(entry.isPresent());
-		Assert.assertEquals(300, entry.get().getTtlSeconds());
-		
-		Optional<GetOperationDefinition> getOperation = settings.getGetOperation();
-		Assert.assertTrue(getOperation.isPresent());
-		Assert.assertEquals(100, getOperation.get().getTimeoutMillis());
 
-		Optional<SetOperationDefinition> setOperation = settings.getSetOperation();
-		Assert.assertTrue(setOperation.isPresent());
-		Assert.assertEquals(100, setOperation.get().getTimeoutMillis());
-
-	}
 	
 }

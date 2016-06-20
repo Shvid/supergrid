@@ -21,7 +21,7 @@ package com.shvid.supergrid.client.config;
  *
  */
 
-public interface CacheDefinition extends OptionalSettingsDefinition {
+public interface CacheDefinition extends CacheSettingsHolder {
 
 	/**
 	 * Gets name of the cache

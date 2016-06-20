@@ -13,21 +13,23 @@
  */
 package com.shvid.supergrid.client.config;
 
+
+
 /**
- * Get Operation Definition
+ * Cache Settings Holder
  * 
  * @author Alex Shvid
  *
  */
 
-public interface GetOperationDefinition {
+public interface CacheSettingsHolder {
 
 	/**
-	 * Gets timeout of operation
+	 * Gets cache settings
 	 * 
-	 * @return timeout in milliseconds or 0
+	 * @return cache settings
 	 */
 	
-	int getTimeoutMillis();
-	
+	CacheSettingsDefinition getSettings();
+
 }

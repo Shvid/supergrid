@@ -32,18 +32,7 @@ public interface SupergridDefinition {
 	 */
 	
 	String getName();
-	
-	/**
-	 * Gets endpoint definitions
-	 * 
-	 * key is the endpoint name
-	 * value is the endpoint definition
-	 * 
-	 * @return not null map
-	 */
-	
-	Map<String, EndpointDefinition> getEndpoints();
-	
+		
 	/**
 	 * Gets client definition
 	 * 
@@ -51,17 +40,6 @@ public interface SupergridDefinition {
 	 */
 	
 	ClientDefinition getClient();
-	
-	/**
-	 * Gets keyspace definitions
-	 * 
-	 * key is the keyspace name
-	 * value is the keyspace definition
-	 * 
-	 * @return not null map
-	 */
-	
-	Map<String, KeyspaceDefinition> getKeyspaces();
 	
 	/**
 	 * Gets cache mapping definitions

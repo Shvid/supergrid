@@ -27,22 +27,12 @@ public final class ConfigConstants {
 	private ConfigConstants() {
 	}
 	
-	public static final String DEFAULT_NAME = "unknown";
-
-	public static final String DEFAULT_NAMESPACE = "test";
-
 	public static final String DEFAULT_HOST = "localhost";
 
 	public static final int DEFAULT_PORT = 5000;
 	
-	public static final String DEFAULT_USER = "test";
-	
-	public static final String DEFAULT_PASSWORD = "test";
-	
 	public static final int DEFAULT_TTL = SupergridConstants.UNSET_TTL;
 	
 	public static final int DEFAULT_TIMEOUT = SupergridConstants.UNSET_TIMEOUT;
-
-	public static final String DEFAULT_PATTERN = "*";
 
 }

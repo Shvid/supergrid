@@ -13,7 +13,10 @@
  */
 package com.shvid.supergrid.client.config;
 
+import java.util.List;
+
 import com.google.common.base.Optional;
+
 
 /**
  * Client Definition
@@ -22,7 +25,7 @@ import com.google.common.base.Optional;
  *
  */
 
-public interface ClientDefinition extends OptionalSettingsDefinition {
+public interface ClientDefinition extends CacheSettingsHolder {
 
 	/**
 	 * Gets name of the client application
@@ -33,19 +36,20 @@ public interface ClientDefinition extends OptionalSettingsDefinition {
 	String getName();
 	
 	/**
-	 * Gets namespace
+	 * Gets server definitions
 	 * 
-	 * @return not null namespace or test
+	 * @return not null list
 	 */
 	
-	String getNamespace();
+	List<ServerDefinition> getServers();
 	
 	/**
-	 * Gets topology
+	 * Gets auth definition if exists
 	 * 
-	 * @return not null topology definition
+	 * @return auth definition
 	 */
 	
-	TopologyDefinition getTopology();
+	Optional<AuthDefinition> getAuthDefinition();
+	
 
 }

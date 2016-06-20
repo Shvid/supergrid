@@ -14,20 +14,32 @@
 package com.shvid.supergrid.client.config;
 
 /**
- * Set Operation Definition
+ * Cache Settings Definition
  * 
  * @author Alex Shvid
  *
  */
 
-public interface SetOperationDefinition {
+public interface CacheSettingsDefinition {
 
 	/**
+	 * Time to live in seconds or 0
+	 * 
+	 * @param effective - if true get parent setting if current is default
+	 * 
+	 * @return ttl or 0
+	 */
+	
+	int getTtlSeconds(boolean effective);
+	
+	/**
 	 * Gets timeout of operation
+	 * 
+	 * @param effective - if true get parent setting if current is default
 	 * 
 	 * @return timeout in milliseconds or 0
 	 */
 	
-	int getTimeoutMillis();
+	int getTimeoutMillis(boolean effective);
 	
 }

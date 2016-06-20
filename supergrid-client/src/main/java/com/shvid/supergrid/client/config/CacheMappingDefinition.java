@@ -13,6 +13,8 @@
  */
 package com.shvid.supergrid.client.config;
 
+import java.util.regex.Pattern;
+
 
 /**
  * Cache Mapping Definition
@@ -21,15 +23,15 @@ package com.shvid.supergrid.client.config;
  *
  */
 
-public interface CacheMappingDefinition extends OptionalSettingsDefinition {
+public interface CacheMappingDefinition extends CacheSettingsHolder {
 
 	/**
 	 * Gets pattern of the cache name
 	 * 
-	 * @return not null pattern string
+	 * @return not null java pattern
 	 */
 	
-	String getPattern();
+	Pattern getPattern();
 	
 	/**
 	 * Gets keyspace 

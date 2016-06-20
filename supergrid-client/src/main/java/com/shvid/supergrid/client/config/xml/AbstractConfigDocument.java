@@ -29,6 +29,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
+import com.google.common.base.Optional;
 import com.shvid.supergrid.client.config.PropertyPlaceholder;
 import com.shvid.supergrid.support.SupergridConfigException;
 
@@ -91,8 +92,17 @@ abstract class AbstractConfigDocument {
 		return attributes;
 	}
 
-	protected String getString(NamedNodeMap attributes, String name) {
-		return getString(attributes, name, null);
+	protected Optional<String> getOptionalString(NamedNodeMap attributes, String name) {
+		String strOrNull = getString(attributes, name, null);
+		return Optional.fromNullable(strOrNull);
+	}
+	
+	protected String getRequiredString(NamedNodeMap attributes, String name) {
+		String result = getString(attributes, name, null);
+		if (result == null) {
+			throw new SupergridConfigException("empty attribute '" + name + "' in " + attributes);
+		}
+		return result;
 	}
 	
 	protected String getString(NamedNodeMap attributes, String name, String defaultValue) {
@@ -109,20 +119,8 @@ abstract class AbstractConfigDocument {
 		return defaultValue;
 	}
 	
-	protected Integer getInteger(NamedNodeMap attributes, String name) {
-		String str = getString(attributes, name);
-		if (str != null) {
-			try {
-				return Integer.parseInt(str);
-			} catch (NumberFormatException e) {
-				throw new SupergridConfigException("wrong number in attribute " + name, e);
-			}
-		}
-		return null;
-	}
-	
 	protected int getInteger(NamedNodeMap attributes, String name, int defaultValue) {
-		String str = getString(attributes, name);
+		String str = getString(attributes, name, null);
 		if (str != null) {
 			try {
 				return Integer.parseInt(str);
@@ -133,28 +131,29 @@ abstract class AbstractConfigDocument {
 		return defaultValue;
 	}
 	
-	protected Boolean getBoolean(NamedNodeMap attributes, String name) {
-		String str = getString(attributes, name);
-		if (str != null) {
-			return Boolean.parseBoolean(str);
-		}
-		return null;
-	}
-	
 	protected boolean getBoolean(NamedNodeMap attributes, String name, boolean defaultValue) {
-		String str = getString(attributes, name);
+		String str = getString(attributes, name, null);
 		if (str != null) {
 			return Boolean.parseBoolean(str);
 		}
 		return defaultValue;
 	}
 
-	protected <E extends Enum<E>> E getEnum(NamedNodeMap attributes, String name, EnumParser<E> parser) {
-		return getEnum(attributes, name, parser, null);
+	public interface EnumParser<E extends Enum<E>> {
+
+		/**
+		 * Parses string value
+		 * 
+		 * @param value - string value
+		 * @return enum instance
+		 */
+		
+		E parse(String value);
+		
 	}
 	
 	protected <E extends Enum<E>> E getEnum(NamedNodeMap attributes, String name, EnumParser<E> parser, E defaultValue) {
-		String str = getString(attributes, name);
+		String str = getString(attributes, name, null);
 		if (str != null) {
 			return parser.parse(str);
 		}

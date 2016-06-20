@@ -4,8 +4,8 @@
          updateCheck="false" monitoring="autodetect"
          name="supergrid-test">
 
-    <endpoint name="clusterA">
-          
+    <client name="super-app">
+
       <server host="localhost" port="5000" />
       
       <auth
@@ -13,85 +13,33 @@
          password="GnfnDngmF"
          />
 
-    </endpoint>
-
-    <endpoint name="clusterB">
-      
-      <server host="localhost" port="7000" />
-      
-      <auth
-         user="test"
-         password="GnfnDngmF"
-         />
-
-    </endpoint>
-
-    <client name="super-app" namespace="test">
-
-      <topology type="failover">
-         <active endpoint="clusterA" />
-         <standby endpoint="clusterB" />
-      </topology>
-      
-     <!--  
-
-      <topology type="single">
-         <active endpoint="clusterA" />
-      </topology>
-    
-      <topology type="active-active">
-         <active endpoint="clusterA" />
-         <active endpoint="clusterB" />
-      </topology>
-    
-    -->
-    
-      <entry
-         ttl-seconds="300"
-         />
-         
-      <get-operation
-         timeout-millis="100"
-         />   
-
-      <set-operation
-         timeout-millis="100"
-         />       
+      <settings
+         ttl-seconds="500"
+         timeout-millis="200"
+         />     
     
     </client>
 
-    <keyspace name="Account" namespace="test" />
-
-    <cache-mapping pattern="*" keyspace="Account">
+    <cache-mapping pattern="PRD." keyspace="Account">
     
-      <entry
-         ttl-seconds="300"
-         />
-         
-      <get-operation
-         timeout-millis="100"
+      <settings
+         ttl-seconds="200"
+         timeout-millis="400"
          />   
-
-      <set-operation
-         timeout-millis="100"
-         />       
     
     </cache-mapping>
     
+    <cache-mapping pattern="LT." keyspace="Account" />
+    
     <cache name="TestCache" keyspace="Account">
 
-      <entry
+      <settings
          ttl-seconds="300"
-         />
-         
-      <get-operation
          timeout-millis="100"
-         />   
-
-      <set-operation
-         timeout-millis="100"
-         />   
+         />  
 
     </cache>
+
+    <cache name="TestCache2" keyspace="Account" />
 
 </supergrid>
