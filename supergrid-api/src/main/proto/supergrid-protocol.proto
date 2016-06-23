@@ -9,11 +9,12 @@ message SupergridPayload
     {
         // general payloads    
         NullPayload = 0;
-        BoolPayload = 1;
-        ValuePayload = 2;
-        ErrorPayload = 3;
-        BatchPayload = 4;
-        MetadataPayload = 5;
+        VoidPayload = 1;
+        BoolPayload = 2;
+        ValuePayload = 3;
+        ErrorPayload = 4;
+        BatchPayload = 5;
+        MetadataPayload = 6;
        
         // common operations
         ExistPayload = 10;
@@ -29,12 +30,13 @@ message SupergridPayload
     ValuePayload valuePayload = 3;
     ErrorPayload errorPayload = 4;
     repeated BatchPayload batchPayload = 5;
+    MetadataPayload metadataPayload = 6;
     
     // common operations
-    ExistPayload existPayload = 11;
-    GetPayload getPayload = 12;
-    SetPayload setPayload = 13;
-    CompareAndSetPayload compareAndSetPayload = 14;
+    ExistPayload existPayload = 10;
+    GetPayload getPayload = 11;
+    SetPayload setPayload = 12;
+    CompareAndSetPayload compareAndSetPayload = 13;
     
 }
 
@@ -98,7 +100,7 @@ message SetPayload {
    string superKey = 3;
    string majorKey = 4;
    string minorKey = 5;
-   int32 entityId = 6
+   int32 entityId = 6;
    bytes value = 7;
    int32 ttlSeconds = 8;      
 }
