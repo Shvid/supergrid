@@ -55,16 +55,13 @@ message BatchPayload {
 
 message ValuePayload {
    int64 version = 1;    
-   int64 type = 2;    
+   int64 entityId = 2;    
    bytes value = 3;
-   bytes minorValue = 4;
 }
 
 message CachePayload {
-   string namespace = 1;
-   string keyspace = 2;
-   string cacheName = 3;
-   int32 typeId = 4;
+   string keyspace = 1;
+   string cacheName = 2;
 }
 
 message MetadataPayload {
@@ -81,7 +78,6 @@ message ExistPayload {
    string superKey = 3;
    string majorKey = 4;
    string minorKey = 5;
-   bool anyMinorKey = 6;
 }
 
 message GetPayload {
@@ -92,7 +88,6 @@ message GetPayload {
    string superKey = 3;
    string majorKey = 4;
    string minorKey = 5;
-   bool onlyMinorValue = 6;
 }
 
 message SetPayload {
@@ -103,10 +98,9 @@ message SetPayload {
    string superKey = 3;
    string majorKey = 4;
    string minorKey = 5;
-   bool allMinorKeys = 6;
-   bytes newValue = 8;
-   bytes newMinorValue = 9;
-   int32 ttlSeconds = 10;      
+   int32 entityId = 6
+   bytes value = 7;
+   int32 ttlSeconds = 8;      
 }
 
 message CompareAndSetPayload {
@@ -118,8 +112,8 @@ message CompareAndSetPayload {
    string majorKey = 4;
    string minorKey = 5; 
    int64 version = 6;
-   bytes newValue = 7;
-   bytes newMinorValue = 8;
+   int32 entityId = 7;
+   bytes value = 8;
    int32 ttlSeconds = 9;   
 }
 

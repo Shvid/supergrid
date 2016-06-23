@@ -8,24 +8,32 @@
 ### Data affinity
 
 * Cross-datacenter data distribution by SuperKey with near-cache (null - all DC)
-* Partitioned data distribution by MajorKey inside DC (null - replicated distribution)
-* Column-based data distribution by MinorKey inside Row (null - default column)
+* Partitioned data distribution by MajorKey (null - replicated distribution)
+* Tier-based data distribution by MinorKey (null - Tier0, not null - Tier1)
+
+### Tiers
+
+* SuperKey - always in memory and server configurations as it is
+* MajorKey - always in memory as a hash
+* Tier0 - in memory both key and value
+* Tier1 - on disk both key and value
 
 ### Definitions
 
 * Keyspace name is always lower case
 * Cache name is always upper case
+* TTL per major key
+* EntityId per minor key
 
 ### Storage technologies
 
-* SuperKey never stored, basically needs only for routing between DCs
-* Client connects only to nearest DC
-* Only not null MajorKey is using for hashing and partitioning
-* Only hash of MajorKey stored in-memory, that reference to sorted_list[cacheId, offset, size, ttl] 
-* Each cache has table in memory for MinorKeys [columnId <-> MinorKeys]
+* SuperKey needs for routing between DCs
+* Client connects to nearest DC
+* MajorKey is using for hashing and partitioning
+* MajorKey stored in-memory, that reference to sorted_list[cacheId, offset, size, ttl, version] 
 
 ### Transactions
 
-* No transactions support
-* Each Row has version
-* CAS (compare and set) method supported per Row
+* No transactions
+* Each majorKey entry has a version
+* CAS (compare and set) method supported per MajorKey access
