@@ -11,18 +11,18 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.support;
+package com.shvid.supergrid.support.exception;
 
-public class NamespaceNotFoundException extends SupergridException {
+public class CacheNotFoundException extends SupergridException {
 
-	private static final long serialVersionUID = -3537542670090400719L;
+	private static final long serialVersionUID = 4824538129120664380L;
 
-	public NamespaceNotFoundException(String namespace) {
-		super(namespace);
+	public CacheNotFoundException(String tableName) {
+		super(tableName);
 	}
 
-	public NamespaceNotFoundException(String namespace, Throwable t) {
-		super(namespace, t);
+	public CacheNotFoundException(String tableName, Throwable t) {
+		super(tableName, t);
 	}
 
 }

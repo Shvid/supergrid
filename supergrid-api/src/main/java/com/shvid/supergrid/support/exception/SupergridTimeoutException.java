@@ -11,18 +11,29 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.support;
+package com.shvid.supergrid.support.exception;
 
-public class TableNotFoundException extends SupergridException {
+/**
+ * SupergridTimeoutException
+ * 
+ * @author Alex Shvid
+ *
+ */
 
-	private static final long serialVersionUID = 4824538129120664380L;
+public class SupergridTimeoutException extends SupergridException {
 
-	public TableNotFoundException(String tableName) {
-		super(tableName);
+	private static final long serialVersionUID = 942050858050281111L;
+
+	public SupergridTimeoutException(String msg) {
+		super(msg);
+	}
+	
+	public SupergridTimeoutException(String msg, Throwable t) {
+		super(msg, t);
 	}
 
-	public TableNotFoundException(String tableName, Throwable t) {
-		super(tableName, t);
+	public SupergridTimeoutException(Throwable t) {
+		super(t);
 	}
-
+	
 }

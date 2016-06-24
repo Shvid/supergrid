@@ -25,7 +25,7 @@ import com.shvid.supergrid.client.config.ClientDefinition;
 import com.shvid.supergrid.client.config.ConfigConstants;
 import com.shvid.supergrid.client.config.ServerDefinition;
 import com.shvid.supergrid.client.config.SupergridDefinition;
-import com.shvid.supergrid.support.SupergridConfigException;
+import com.shvid.supergrid.support.exception.SupergridConfigException;
 
 /**
  * SupergridConfigDocument

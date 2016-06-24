@@ -11,29 +11,18 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.support;
+package com.shvid.supergrid.support.exception;
 
-/**
- * Root hierarchy exception for all supergrid runtime exceptions
- * 
- * @author Alex Shvid
- *
- */
+public class KeyspaceNotFoundException extends SupergridException {
 
-public class SupergridException extends RuntimeException {
+	private static final long serialVersionUID = -682923293381470612L;
 
-	private static final long serialVersionUID = -359861329437043934L;
-
-	public SupergridException(String msg) {
-		super(msg);
+	public KeyspaceNotFoundException(String tableName) {
+		super(tableName);
 	}
 
-	public SupergridException(String msg, Throwable t) {
-		super(msg, t);
+	public KeyspaceNotFoundException(String tableName, Throwable t) {
+		super(tableName, t);
 	}
 
-	public SupergridException(Throwable t) {
-		super(t);
-	}
-	
 }

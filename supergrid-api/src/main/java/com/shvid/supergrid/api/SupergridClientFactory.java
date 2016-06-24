@@ -15,8 +15,6 @@ package com.shvid.supergrid.api;
 
 import java.util.Properties;
 
-import com.shvid.supergrid.support.NamespaceNotFoundException;
-
 public interface SupergridClientFactory {
 
 	/**
@@ -28,7 +26,7 @@ public interface SupergridClientFactory {
 	 * @throws NamespaceNotFoundException
 	 */
 	
-	SupergridClient connect(String configXmlContent, Properties props) throws NamespaceNotFoundException;
+	SupergridClient connect(String configXmlContent, Properties props);
 	
 }
 

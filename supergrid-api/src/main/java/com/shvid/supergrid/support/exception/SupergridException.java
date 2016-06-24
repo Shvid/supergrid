@@ -11,28 +11,28 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.support;
+package com.shvid.supergrid.support.exception;
 
 /**
- * SupergridTimeoutException
+ * Root hierarchy exception for all supergrid runtime exceptions
  * 
  * @author Alex Shvid
  *
  */
 
-public class SupergridTimeoutException extends SupergridException {
+public class SupergridException extends RuntimeException {
 
-	private static final long serialVersionUID = 942050858050281111L;
+	private static final long serialVersionUID = -359861329437043934L;
 
-	public SupergridTimeoutException(String msg) {
+	public SupergridException(String msg) {
 		super(msg);
 	}
-	
-	public SupergridTimeoutException(String msg, Throwable t) {
+
+	public SupergridException(String msg, Throwable t) {
 		super(msg, t);
 	}
 
-	public SupergridTimeoutException(Throwable t) {
+	public SupergridException(Throwable t) {
 		super(t);
 	}
 	

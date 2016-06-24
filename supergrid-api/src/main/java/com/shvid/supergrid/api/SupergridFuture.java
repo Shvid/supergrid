@@ -24,4 +24,12 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 public interface SupergridFuture extends ListenableFuture<SupergridResult> {
 
+	/**
+	 * Gets operation associated with future
+	 * 
+	 * @return not null operation
+	 */
+	
+	SupergridOperation getOperation();
+	
 }

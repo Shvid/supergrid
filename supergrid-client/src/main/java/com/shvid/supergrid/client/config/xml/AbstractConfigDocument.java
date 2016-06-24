@@ -31,7 +31,7 @@ import org.xml.sax.SAXException;
 
 import com.google.common.base.Optional;
 import com.shvid.supergrid.client.config.PropertyPlaceholder;
-import com.shvid.supergrid.support.SupergridConfigException;
+import com.shvid.supergrid.support.exception.SupergridConfigException;
 
 /**
  * AbstractConfigDocument for xml config parsing
