@@ -11,18 +11,13 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.client;
+package com.shvid.supergrid.api.operation;
 
-/**
- * Client constants
- * 
- * @author Alex Shvid
- *
- */
 
-public final class ClientConstants {
+public class ExistOperation {
 
-	private ClientConstants() {
+	public ExistOperation() {
 	}
 	
+
 }

@@ -11,22 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.api;
+package com.shvid.supergrid.api.operation;
 
-import java.util.Properties;
+import com.shvid.supergrid.api.SupergridResult;
 
-public interface SupergridClientFactory {
+public class BatchResult implements SupergridResult {
 
-	/**
-	 * Connects to the remote cluster(s)
-	 * 
-	 * @param configXmlContent - config xml content
-	 * @param props - placeholder properties
-	 * @return client instance
-	 * @throws NamespaceNotFoundException
-	 */
-	
-	SupergridClient connect(String configXmlContent, Properties props);
-	
 }
-

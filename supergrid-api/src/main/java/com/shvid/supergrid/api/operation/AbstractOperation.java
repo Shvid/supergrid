@@ -13,12 +13,26 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.batch.BatchOperation;
+import com.shvid.supergrid.api.SupergridFuture;
+import com.shvid.supergrid.api.SupergridOperation;
 
-public class AbstractOperation {
+/**
+ * Abstract operation
+ * 
+ * @author Alex Shvid
+ *
+ */
 
-	public AbstractOperation addToBatch(BatchOperation batch) {
-		return this;
+public class AbstractOperation implements SupergridOperation {
+
+	@Override
+	public SupergridFuture addToBatch(BatchOperation batch) {
+		return batch.add(this);
+	}
+
+	@Override
+	public SupergridFuture execute(int timeoutMillis) {
+		return null;
 	}
 	
 }

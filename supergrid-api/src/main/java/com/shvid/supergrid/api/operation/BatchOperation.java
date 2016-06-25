@@ -11,15 +11,36 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.api.batch;
+package com.shvid.supergrid.api.operation;
 
+import com.shvid.supergrid.api.SupergridFuture;
 import com.shvid.supergrid.api.SupergridOperation;
 
+/**
+ * Batch Operation
+ *  
+ * @author Alex Shvid
+ *
+ */
 
-public class BatchOperation {
+public interface BatchOperation extends SupergridOperation {
 
-	public BatchOperation add(SupergridOperation op) {
-		return this;
-	}
+	/**
+	 * Adds operation to the batch
+	 * 
+	 * @param operation
+	 * @return not null future
+	 */
+	
+	SupergridFuture add(SupergridOperation operation);
+	
+	/**
+	 * Executes batch
+	 * 
+	 * @param timeoutMillis - timeout milliseconds
+	 * @return not null batch future
+	 */
+	
+	SupergridFuture execute(int timeoutMillis);
 	
 }

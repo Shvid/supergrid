@@ -25,7 +25,16 @@ public final class SupergridConstants {
 	private SupergridConstants() {
 	}
 
+	/**
+	 * Default/unset parameter for TimeToLive in seconds
+	 */
+	
 	public static final int UNSET_TTL = 0;
+	
+	/**
+	 * Default/unset parameter for SLA timeout in milliseconds
+	 */
+	
 	public static final int UNSET_TIMEOUT = 0;
 	
 }

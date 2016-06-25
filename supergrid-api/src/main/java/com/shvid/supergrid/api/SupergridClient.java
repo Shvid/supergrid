@@ -13,6 +13,12 @@
  */
 package com.shvid.supergrid.api;
 
+import com.shvid.supergrid.api.operation.BatchOperation;
+import com.shvid.supergrid.api.operation.CompareAndSetOperation;
+import com.shvid.supergrid.api.operation.ExistOperation;
+import com.shvid.supergrid.api.operation.GetOperation;
+import com.shvid.supergrid.api.operation.SetOperation;
+
 
 /**
  * Supergrid client
@@ -24,12 +30,51 @@ package com.shvid.supergrid.api;
 public interface SupergridClient {
 
 	/**
-	 * Executes supergrid operation
+	 * Creates batch
 	 * 
-	 * @param operation
-	 * @return not null future
+	 * @return not null batch operation
 	 */
 	
-	SupergridFuture execute(SupergridOperation operation, int timeoutMillis);
+	BatchOperation newBatch();
+
+	/**
+	 * Creates exist operation
+	 * 
+	 * @param cacheName - cache name
+	 * @param majorKey - major key
+	 * @return not null exist operation
+	 */
+	
+	ExistOperation newExist(String cacheName, String majorKey);
+	
+	/**
+	 * Creates get operation
+	 * 
+	 * @param cacheName - cache name
+	 * @param majorKey - major key
+	 * @return not null get operation
+	 */
+	
+	GetOperation newGet(String cacheName, String majorKey);
+
+	/**
+	 * Creates set operation
+	 * 
+	 * @param cacheName - cache name
+	 * @param majorKey - major key
+	 * @return not null set operation
+	 */
+	
+	SetOperation newSet(String cacheName, String majorKey);
+	
+	/**
+	 * Creates compare and set operation
+	 * 
+	 * @param cacheName - cache name
+	 * @param majorKey - major key
+	 * @return not null CAS operation
+	 */
+	
+	CompareAndSetOperation newCas(String cacheName, String majorKey);
 	
 }

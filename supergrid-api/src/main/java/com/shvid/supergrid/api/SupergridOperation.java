@@ -13,6 +13,8 @@
  */
 package com.shvid.supergrid.api;
 
+import com.shvid.supergrid.api.operation.BatchOperation;
+
 
 /**
  * All operations in Supergrid are asynronous
@@ -27,5 +29,22 @@ package com.shvid.supergrid.api;
 
 public interface SupergridOperation {
 
+	/**
+	 * Adds this operation to the batch
+	 * 
+	 * @param batch - batch that will be executed
+	 * @return not null future
+	 */
+	
+	SupergridFuture addToBatch(BatchOperation batch);
+	
+	/**
+	 * Executes operation
+	 * 
+	 * @param timeoutMillis - timeout milliseconds
+	 * @return not null future
+	 */
+	
+	SupergridFuture execute(int timeoutMillis);
 	
 }
