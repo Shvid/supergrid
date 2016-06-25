@@ -1,5 +1,9 @@
 # supergrid
 
+### Phase
+
+Current phase of the project: idea, far away from PoC
+
 ### Simple key-value data access
 
 * key is always String
