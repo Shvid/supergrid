@@ -27,6 +27,7 @@ Current phase of the project: idea, far away from PoC
 * Keyspace name is always lower case
 * Cache name is always upper case
 * TTL per major key
+* Version per major key
 * EntityId per minor key
 
 ### Storage technologies
