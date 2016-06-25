@@ -14,7 +14,7 @@
 package com.shvid.supergrid.support.exception;
 
 
-public class FieldNotFoundException extends SupergridException {
+public class FieldNotFoundException extends GeneralRuntimeException {
 
 	private static final long serialVersionUID = -3479975328011894739L;
 

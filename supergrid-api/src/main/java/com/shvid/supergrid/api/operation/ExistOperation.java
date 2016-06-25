@@ -13,10 +13,19 @@
  */
 package com.shvid.supergrid.api.operation;
 
+import com.shvid.supergrid.api.ClientOperations;
 
-public class ExistOperation {
+/**
+ * Exist operation
+ * 
+ * @author Alex Shvid
+ *
+ */
 
-	public ExistOperation() {
+public class ExistOperation extends AbstractOperation<ExistOperation> {
+
+	public ExistOperation(ClientOperations client, String cacheName) {
+		super(client, cacheName);
 	}
 	
 

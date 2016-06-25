@@ -13,7 +13,7 @@
  */
 package com.shvid.supergrid.client.config;
 
-import com.shvid.supergrid.api.SupergridConstants;
+import com.shvid.supergrid.api.GlobalConstants;
 
 /**
  * Config Constants
@@ -31,8 +31,8 @@ public final class ConfigConstants {
 
 	public static final int DEFAULT_PORT = 5000;
 	
-	public static final int DEFAULT_TTL = SupergridConstants.UNSET_TTL;
+	public static final int DEFAULT_TTL = GlobalConstants.UNSET_TTL;
 	
-	public static final int DEFAULT_TIMEOUT = SupergridConstants.UNSET_TIMEOUT;
+	public static final int DEFAULT_TIMEOUT = GlobalConstants.UNSET_TIMEOUT;
 
 }

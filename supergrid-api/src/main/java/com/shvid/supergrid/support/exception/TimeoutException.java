@@ -11,30 +11,29 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.api;
+package com.shvid.supergrid.support.exception;
 
 /**
- * Supergrid Constants
+ * TimeoutException
  * 
  * @author Alex Shvid
  *
  */
 
-public final class SupergridConstants {
+public class TimeoutException extends GeneralRuntimeException {
 
-	private SupergridConstants() {
+	private static final long serialVersionUID = 942050858050281111L;
+
+	public TimeoutException(String msg) {
+		super(msg);
+	}
+	
+	public TimeoutException(String msg, Throwable t) {
+		super(msg, t);
 	}
 
-	/**
-	 * Default/unset parameter for TimeToLive in seconds
-	 */
-	
-	public static final int UNSET_TTL = 0;
-	
-	/**
-	 * Default/unset parameter for SLA timeout in milliseconds
-	 */
-	
-	public static final int UNSET_TIMEOUT = 0;
+	public TimeoutException(Throwable t) {
+		super(t);
+	}
 	
 }

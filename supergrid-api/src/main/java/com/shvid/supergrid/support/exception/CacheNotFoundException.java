@@ -13,7 +13,7 @@
  */
 package com.shvid.supergrid.support.exception;
 
-public class CacheNotFoundException extends SupergridException {
+public class CacheNotFoundException extends GeneralRuntimeException {
 
 	private static final long serialVersionUID = 4824538129120664380L;
 

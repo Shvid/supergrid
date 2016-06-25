@@ -13,7 +13,7 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.SupergridResult;
+import com.shvid.supergrid.api.SingleResult;
 
 /**
  * VoidResult
@@ -22,7 +22,7 @@ import com.shvid.supergrid.api.SupergridResult;
  *
  */
 
-public enum VoidResult implements SupergridResult {
+public enum VoidResult implements SingleResult {
 
 	VOID;
 	

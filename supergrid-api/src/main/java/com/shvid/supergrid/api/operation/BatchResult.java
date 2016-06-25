@@ -13,8 +13,8 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.SupergridResult;
+import com.shvid.supergrid.api.SingleResult;
 
-public class BatchResult implements SupergridResult {
+public class BatchResult implements SingleResult {
 
 }

@@ -21,13 +21,13 @@ import com.shvid.supergrid.api.operation.SetOperation;
 
 
 /**
- * Supergrid client
+ * Client operations
  * 
  * @author Alex Shvid
  *
  */
 
-public interface SupergridClient {
+public interface ClientOperations {
 
 	/**
 	 * Creates batch

@@ -27,7 +27,7 @@ import com.shvid.supergrid.api.operation.BatchOperation;
  *
  */
 
-public interface SupergridOperation {
+public interface SingleOperation {
 
 	/**
 	 * Adds this operation to the batch
@@ -36,7 +36,7 @@ public interface SupergridOperation {
 	 * @return not null future
 	 */
 	
-	SupergridFuture addToBatch(BatchOperation batch);
+	ResultFuture addToBatch(BatchOperation batch);
 	
 	/**
 	 * Executes operation
@@ -45,6 +45,6 @@ public interface SupergridOperation {
 	 * @return not null future
 	 */
 	
-	SupergridFuture execute(int timeoutMillis);
+	ResultFuture execute(int timeoutMillis);
 	
 }

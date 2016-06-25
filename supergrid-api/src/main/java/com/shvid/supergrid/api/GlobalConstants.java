@@ -11,24 +11,30 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.client;
+package com.shvid.supergrid.api;
 
-import java.util.Properties;
+/**
+ * Global Constants
+ * 
+ * @author Alex Shvid
+ *
+ */
 
-import com.shvid.supergrid.api.SupergridClient;
+public final class GlobalConstants {
 
-public interface SupergridClientFactory {
+	private GlobalConstants() {
+	}
 
 	/**
-	 * Connects to the remote cluster(s)
-	 * 
-	 * @param configXmlContent - config xml content
-	 * @param props - placeholder properties
-	 * @return client instance
-	 * @throws NamespaceNotFoundException
+	 * Default/unset parameter for TimeToLive in seconds
 	 */
 	
-	SupergridClient connect(String configXmlContent, Properties props);
+	public static final int UNSET_TTL = 0;
+	
+	/**
+	 * Default/unset parameter for SLA timeout in milliseconds
+	 */
+	
+	public static final int UNSET_TIMEOUT = 0;
 	
 }
-

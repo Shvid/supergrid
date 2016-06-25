@@ -13,10 +13,19 @@
  */
 package com.shvid.supergrid.api.operation;
 
+import com.shvid.supergrid.api.ClientOperations;
 
-public class SetOperation {
+/**
+ * Set operation
+ * 
+ * @author Alex Shvid
+ *
+ */
 
-	public SetOperation() {
+public class SetOperation extends AbstractOperation<SetOperation> {
+
+	public SetOperation(ClientOperations client, String cacheName) {
+		super(client, cacheName);
 	}
 	
 	

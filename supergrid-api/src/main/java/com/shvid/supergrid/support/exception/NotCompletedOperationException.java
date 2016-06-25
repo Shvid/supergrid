@@ -13,7 +13,7 @@
  */
 package com.shvid.supergrid.support.exception;
 
-import com.shvid.supergrid.api.SupergridOperation;
+import com.shvid.supergrid.api.SingleOperation;
 
 /**
  * NotCompletedOperationException
@@ -22,18 +22,18 @@ import com.shvid.supergrid.api.SupergridOperation;
  *
  */
 
-public class NotCompletedOperationException extends SupergridException {
+public class NotCompletedOperationException extends GeneralRuntimeException {
 
 	private static final long serialVersionUID = -3703307500050056346L;
 	
-	private final SupergridOperation operation;
+	private final SingleOperation operation;
 	
-	public NotCompletedOperationException(SupergridOperation operation) {
+	public NotCompletedOperationException(SingleOperation operation) {
 		super("execute operation before get result: " + operation);
 		this.operation = operation;
 	}
 
-	public SupergridOperation getOperation() {
+	public SingleOperation getOperation() {
 		return operation;
 	}
 

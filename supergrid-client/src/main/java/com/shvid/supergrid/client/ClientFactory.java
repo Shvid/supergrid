@@ -11,29 +11,24 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.support.exception;
+package com.shvid.supergrid.client;
 
-/**
- * SupergridTimeoutException
- * 
- * @author Alex Shvid
- *
- */
+import java.util.Properties;
 
-public class SupergridTimeoutException extends SupergridException {
+import com.shvid.supergrid.api.ClientOperations;
 
-	private static final long serialVersionUID = 942050858050281111L;
+public interface ClientFactory {
 
-	public SupergridTimeoutException(String msg) {
-		super(msg);
-	}
+	/**
+	 * Connects to the remote cluster(s)
+	 * 
+	 * @param configXmlContent - config xml content
+	 * @param props - placeholder properties
+	 * @return client instance
+	 * @throws NamespaceNotFoundException
+	 */
 	
-	public SupergridTimeoutException(String msg, Throwable t) {
-		super(msg, t);
-	}
-
-	public SupergridTimeoutException(Throwable t) {
-		super(t);
-	}
+	ClientOperations connect(String configXmlContent, Properties props);
 	
 }
+

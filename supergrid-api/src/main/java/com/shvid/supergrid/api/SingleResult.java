@@ -25,6 +25,6 @@ package com.shvid.supergrid.api;
  *
  */
 
-public interface SupergridResult {
+public interface SingleResult {
 
 }

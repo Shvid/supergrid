@@ -31,7 +31,7 @@ import org.xml.sax.SAXException;
 
 import com.google.common.base.Optional;
 import com.shvid.supergrid.client.config.PropertyPlaceholder;
-import com.shvid.supergrid.support.exception.SupergridConfigException;
+import com.shvid.supergrid.support.exception.ConfigurationException;
 
 /**
  * AbstractConfigDocument for xml config parsing
@@ -52,7 +52,7 @@ abstract class AbstractConfigDocument {
 	
 	protected Document parseDocument(URL url) throws IOException {
     if (url == null) {
-      throw new SupergridConfigException("empty url");
+      throw new ConfigurationException("empty url");
     }
 		
 		InputStream is = url.openStream();
@@ -71,7 +71,7 @@ abstract class AbstractConfigDocument {
 	
 	protected Document parseDocument(InputStream is) throws IOException {
     if (is == null) {
-      throw new SupergridConfigException("empty input stream");
+      throw new ConfigurationException("empty input stream");
     }
 		
     try {
@@ -100,7 +100,7 @@ abstract class AbstractConfigDocument {
 	protected String getRequiredString(NamedNodeMap attributes, String name) {
 		String result = getString(attributes, name, null);
 		if (result == null) {
-			throw new SupergridConfigException("empty attribute '" + name + "' in " + attributes);
+			throw new ConfigurationException("empty attribute '" + name + "' in " + attributes);
 		}
 		return result;
 	}
@@ -125,7 +125,7 @@ abstract class AbstractConfigDocument {
 			try {
 				return Integer.parseInt(str);
 			} catch (NumberFormatException e) {
-				throw new SupergridConfigException("wrong number in attribute " + name, e);
+				throw new ConfigurationException("wrong number in attribute " + name, e);
 			}
 		}
 		return defaultValue;

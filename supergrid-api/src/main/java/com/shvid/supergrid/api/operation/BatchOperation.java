@@ -13,8 +13,8 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.SupergridFuture;
-import com.shvid.supergrid.api.SupergridOperation;
+import com.shvid.supergrid.api.ResultFuture;
+import com.shvid.supergrid.api.SingleOperation;
 
 /**
  * Batch Operation
@@ -23,7 +23,7 @@ import com.shvid.supergrid.api.SupergridOperation;
  *
  */
 
-public interface BatchOperation extends SupergridOperation {
+public interface BatchOperation extends SingleOperation {
 
 	/**
 	 * Adds operation to the batch
@@ -32,7 +32,7 @@ public interface BatchOperation extends SupergridOperation {
 	 * @return not null future
 	 */
 	
-	SupergridFuture add(SupergridOperation operation);
+	ResultFuture add(SingleOperation operation);
 	
 	/**
 	 * Executes batch
@@ -41,6 +41,6 @@ public interface BatchOperation extends SupergridOperation {
 	 * @return not null batch future
 	 */
 	
-	SupergridFuture execute(int timeoutMillis);
+	ResultFuture execute(int timeoutMillis);
 	
 }

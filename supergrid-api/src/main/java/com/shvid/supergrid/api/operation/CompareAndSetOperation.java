@@ -13,11 +13,21 @@
  */
 package com.shvid.supergrid.api.operation;
 
+import com.shvid.supergrid.api.ClientOperations;
 
-public class CompareAndSetOperation {
+/**
+ * CompareAndSetOperation
+ * 
+ * @author Alex Shvid
+ *
+ */
 
-	public CompareAndSetOperation() {
+public class CompareAndSetOperation extends AbstractOperation<CompareAndSetOperation> {
+
+	public CompareAndSetOperation(ClientOperations client, String cacheName) {
+		super(client, cacheName);
 	}
+	
 
 	
 }

@@ -13,7 +13,7 @@
  */
 package com.shvid.supergrid.support.exception;
 
-public class KeyspaceNotFoundException extends SupergridException {
+public class KeyspaceNotFoundException extends GeneralRuntimeException {
 
 	private static final long serialVersionUID = -682923293381470612L;
 

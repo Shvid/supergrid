@@ -13,12 +13,20 @@
  */
 package com.shvid.supergrid.api.operation;
 
+import com.shvid.supergrid.api.ClientOperations;
 
-public class GetOperation  {
+/**
+ * Get operation
+ * 
+ * @author Alex Shvid
+ *
+ */
 
-	public GetOperation() {
+public class GetOperation extends AbstractOperation<GetOperation> {
+
+	public GetOperation(ClientOperations client, String cacheName) {
+		super(client, cacheName);
 	}
-	
 
 
 	

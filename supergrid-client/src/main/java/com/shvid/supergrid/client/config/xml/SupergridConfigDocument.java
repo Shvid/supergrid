@@ -25,7 +25,7 @@ import com.shvid.supergrid.client.config.ClientDefinition;
 import com.shvid.supergrid.client.config.ConfigConstants;
 import com.shvid.supergrid.client.config.ServerDefinition;
 import com.shvid.supergrid.client.config.SupergridDefinition;
-import com.shvid.supergrid.support.exception.SupergridConfigException;
+import com.shvid.supergrid.support.exception.ConfigurationException;
 
 /**
  * SupergridConfigDocument
@@ -100,7 +100,7 @@ public final class SupergridConfigDocument extends AbstractConfigDocument {
 			}
 			
 			if (clientElementOrNull == null) {
-				throw new SupergridConfigException("'client' tag is required");
+				throw new ConfigurationException("'client' tag is required");
 			}			
 			
 			this.client = clientElementOrNull;

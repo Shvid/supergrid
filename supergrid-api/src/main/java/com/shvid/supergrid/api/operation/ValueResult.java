@@ -13,7 +13,7 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.SupergridResult;
+import com.shvid.supergrid.api.SingleResult;
 
 /**
  * ValueResult
@@ -22,6 +22,6 @@ import com.shvid.supergrid.api.SupergridResult;
  *
  */
 
-public class ValueResult implements SupergridResult {
+public class ValueResult implements SingleResult {
 
 }

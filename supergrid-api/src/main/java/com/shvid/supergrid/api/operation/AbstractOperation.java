@@ -13,8 +13,10 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.SupergridFuture;
-import com.shvid.supergrid.api.SupergridOperation;
+import com.google.common.base.Preconditions;
+import com.shvid.supergrid.api.ClientOperations;
+import com.shvid.supergrid.api.ResultFuture;
+import com.shvid.supergrid.api.SingleOperation;
 
 /**
  * Abstract operation
@@ -23,16 +25,77 @@ import com.shvid.supergrid.api.SupergridOperation;
  *
  */
 
-public class AbstractOperation implements SupergridOperation {
+public abstract class AbstractOperation<O extends AbstractOperation<O>> implements SingleOperation {
+
+	protected final ClientOperations client;
+	protected final String cacheName;
+	private String superKey;
+	private String majorKey;
+	private String minorKey;
+	private boolean executionPhase;
+	
+	public AbstractOperation(ClientOperations client, String cacheName) {
+		this.client = client;
+		this.cacheName = cacheName;
+	}
+	
+	public String getCacheName() {
+		return cacheName;
+	}
+
+	@SuppressWarnings("unchecked")
+	public O setSuperKey(String superKey) {
+		ensureNotExecutionPhase();
+		this.superKey = superKey;
+		return (O) this;
+	}
+	
+	public String getSuperKey() {
+		return superKey;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public O setMajorKey(String majorKey) {
+		ensureNotExecutionPhase();
+		this.majorKey = majorKey;
+		return (O) this;
+	}
+	
+	public String getMajorKey() {
+		return majorKey;
+	}
+
+	@SuppressWarnings("unchecked")
+	public O setMinorKey(String minorKey) {
+		ensureNotExecutionPhase();
+		this.minorKey = minorKey;
+		return (O) this;
+	}
+
+	public String getMinorKey() {
+		return minorKey;
+	}
 
 	@Override
-	public SupergridFuture addToBatch(BatchOperation batch) {
+	public ResultFuture addToBatch(BatchOperation batch) {
+		Preconditions.checkNotNull(batch, "null batch");
 		return batch.add(this);
 	}
 
 	@Override
-	public SupergridFuture execute(int timeoutMillis) {
+	public ResultFuture execute(int timeoutMillis) {
+		this.executionPhase = true;
 		return null;
+	}
+	
+	protected boolean isExecutionPhase() {
+		return executionPhase;
+	}
+	
+	protected void ensureNotExecutionPhase() {
+		if (executionPhase) {
+			throw new IllegalStateException("execution phase does not allow modificaitons in operation " + this);
+		}
 	}
 	
 }

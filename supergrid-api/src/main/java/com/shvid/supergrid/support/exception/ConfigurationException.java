@@ -13,19 +13,19 @@
  */
 package com.shvid.supergrid.support.exception;
 
-public class SupergridConfigException extends SupergridException {
+public class ConfigurationException extends GeneralRuntimeException {
 
 	private static final long serialVersionUID = 7345765063535628582L;
 
-	public SupergridConfigException(String msg) {
+	public ConfigurationException(String msg) {
 		super(msg);
 	}
 	
-	public SupergridConfigException(String msg, Throwable t) {
+	public ConfigurationException(String msg, Throwable t) {
 		super(msg, t);
 	}
 
-	public SupergridConfigException(Throwable t) {
+	public ConfigurationException(Throwable t) {
 		super(t);
 	}
 	

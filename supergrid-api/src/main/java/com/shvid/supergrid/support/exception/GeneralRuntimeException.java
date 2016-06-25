@@ -20,19 +20,19 @@ package com.shvid.supergrid.support.exception;
  *
  */
 
-public class SupergridException extends RuntimeException {
+public class GeneralRuntimeException extends RuntimeException {
 
 	private static final long serialVersionUID = -359861329437043934L;
 
-	public SupergridException(String msg) {
+	public GeneralRuntimeException(String msg) {
 		super(msg);
 	}
 
-	public SupergridException(String msg, Throwable t) {
+	public GeneralRuntimeException(String msg, Throwable t) {
 		super(msg, t);
 	}
 
-	public SupergridException(Throwable t) {
+	public GeneralRuntimeException(Throwable t) {
 		super(t);
 	}
 	

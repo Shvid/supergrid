@@ -13,7 +13,7 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.SupergridResult;
+import com.shvid.supergrid.api.SingleResult;
 
 /**
  * All errors must be based on this interface
@@ -24,6 +24,6 @@ import com.shvid.supergrid.api.SupergridResult;
  *
  */
 
-public interface ErrorResult extends SupergridResult {
+public interface ErrorResult extends SingleResult {
 
 }
