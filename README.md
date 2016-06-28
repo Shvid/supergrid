@@ -42,3 +42,19 @@ Current phase of the project: idea, far away from PoC
 * No transactions
 * Each majorKey entry has a version
 * CAS (compare and set) method supported per MajorKey access
+
+### In-place computations
+
+* Will support jar deployment for application without cluster restart through web management console
+* Each entry has entityId, that is using for deserialization on event/stream processing
+* CacheListener supported on server side
+* Data model is a protostuff based (defines EntityId and Tags)
+* All operations on server are asynchronous event-driven with SLA
+ 
+### Streaming
+
+* The last feature in roadmap but not least
+* Scala/Java8 style of streams, that is a goal
+* May be a separate stereaming API for JVM8 only
+* Isolation streaming from realtime transactions
+
