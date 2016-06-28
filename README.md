@@ -56,5 +56,5 @@ Current phase of the project: idea, far away from PoC
 * The last feature in roadmap but not least
 * Scala/Java8 style of streams, that is a goal
 * May be a separate stereaming API for JVM8 only
-* Isolation streaming from realtime transactions
+* Isolation of streaming from realtime transactions
 
