@@ -1,5 +1,11 @@
 # supergrid
 
+### Simplicity
+
+* Simple API
+* Simple SPI
+* Simple Impl
+
 ### Phase
 
 Current phase of the project: idea, far away from PoC
