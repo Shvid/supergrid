@@ -11,21 +11,34 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.api.operation;
-
+package com.shvid.supergrid.api;
 
 /**
- * Exist operation
+ * GridProvider interface
  * 
  * @author Alex Shvid
  *
  */
 
-public class ExistOperation extends AbstractOperation<ExistOperation> {
+public interface GridProvider {
 
-	public ExistOperation(String cacheName) {
-		super(cacheName);
-	}
+	/**
+	 * Executes operation
+	 * 
+	 * @param operation - single operation
+	 * @param timeoutMillis - timeout milliseconds
+	 * @return not null future of single result
+	 */
 	
-
+	<O extends SingleOperation<O>> SingleFuture<O> execute(O operation, int timeoutMillis);
+	
+	/**
+	 * Executes batch
+	 * 
+	 * @param timeoutMillis - timeout milliseconds
+	 * @return not null batch future
+	 */
+	
+	BatchFuture execute(BatchOperation batch, int timeoutMillis);
+	
 }

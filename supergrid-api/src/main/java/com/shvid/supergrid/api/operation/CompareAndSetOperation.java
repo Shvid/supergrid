@@ -13,7 +13,6 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.ClientOperations;
 
 /**
  * CompareAndSetOperation
@@ -24,10 +23,8 @@ import com.shvid.supergrid.api.ClientOperations;
 
 public class CompareAndSetOperation extends AbstractOperation<CompareAndSetOperation> {
 
-	public CompareAndSetOperation(ClientOperations client, String cacheName) {
-		super(client, cacheName);
+	public CompareAndSetOperation(String cacheName) {
+		super(cacheName);
 	}
-	
-
 	
 }

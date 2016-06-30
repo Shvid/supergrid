@@ -13,7 +13,6 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.ClientOperations;
 
 /**
  * Set operation
@@ -24,8 +23,8 @@ import com.shvid.supergrid.api.ClientOperations;
 
 public class SetOperation extends AbstractOperation<SetOperation> {
 
-	public SetOperation(ClientOperations client, String cacheName) {
-		super(client, cacheName);
+	public SetOperation(String cacheName) {
+		super(cacheName);
 	}
 	
 	

@@ -17,4 +17,9 @@ import com.shvid.supergrid.api.SingleResult;
 
 public class BatchResult implements SingleResult {
 
+	@Override
+	public int get() {
+		return 0;
+	}
+
 }

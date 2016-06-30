@@ -25,5 +25,12 @@ import com.shvid.supergrid.api.SingleResult;
 public enum NullResult implements SingleResult {
 
 	NULL;
+
+	@Override
+	public int get() {
+		return 0;
+	}
+	
+	
 	
 }

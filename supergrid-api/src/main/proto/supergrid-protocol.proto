@@ -1,9 +1,9 @@
 syntax = "proto3";
 
 option java_package = "com.shvid.supergrid.api.proto";
-option java_outer_classname = "SupergridProtos";
+option java_outer_classname = "GridProtos";
 
-message SupergridPayload
+message GeneralPayload
 {
     enum Type
     {
@@ -51,8 +51,7 @@ message ErrorPayload {
 }
 
 message BatchPayload {
-   string key = 1;
-   SupergridPayload payload = 2; 
+   string superKey = 1;
 }
 
 message ValuePayload {

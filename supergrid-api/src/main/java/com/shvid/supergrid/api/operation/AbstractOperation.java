@@ -15,7 +15,6 @@ package com.shvid.supergrid.api.operation;
 
 import com.google.common.base.Preconditions;
 import com.shvid.supergrid.api.BatchOperation;
-import com.shvid.supergrid.api.ClientOperations;
 import com.shvid.supergrid.api.SingleFuture;
 import com.shvid.supergrid.api.SingleOperation;
 
@@ -28,15 +27,13 @@ import com.shvid.supergrid.api.SingleOperation;
 
 public abstract class AbstractOperation<O extends SingleOperation<O>> implements SingleOperation<O> {
 
-	protected final ClientOperations client;
 	protected final String cacheName;
 	private String superKey;
 	private String majorKey;
 	private String minorKey;
 	private boolean executionPhase;
 	
-	public AbstractOperation(ClientOperations client, String cacheName) {
-		this.client = client;
+	public AbstractOperation(String cacheName) {
 		this.cacheName = cacheName;
 	}
 	
@@ -79,12 +76,6 @@ public abstract class AbstractOperation<O extends SingleOperation<O>> implements
 		Preconditions.checkNotNull(batch, "null batch");
 		SingleFuture<O> future = batch.add(castThis());
 		return future;
-	}
-
-	@Override
-	public SingleFuture<O> execute(int timeoutMillis) {
-		this.executionPhase = true;
-		return null;
 	}
 	
 	protected boolean isExecutionPhase() {

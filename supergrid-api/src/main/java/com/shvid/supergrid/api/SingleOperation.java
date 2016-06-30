@@ -37,13 +37,4 @@ public interface SingleOperation<O extends SingleOperation<O>> {
 	
 	SingleFuture<O> addToBatch(BatchOperation batch);
 	
-	/**
-	 * Executes operation
-	 * 
-	 * @param timeoutMillis - timeout milliseconds
-	 * @return not null future
-	 */
-	
-	SingleFuture<O> execute(int timeoutMillis);
-	
 }

@@ -13,7 +13,6 @@
  */
 package com.shvid.supergrid.api.operation;
 
-import com.shvid.supergrid.api.ClientOperations;
 
 /**
  * Typed get operation
@@ -24,8 +23,8 @@ import com.shvid.supergrid.api.ClientOperations;
 
 public class TypedGetOperation<E> extends AbstractOperation<TypedGetOperation<E>> {
 
-	public TypedGetOperation(ClientOperations client, String cacheName) {
-		super(client, cacheName);
+	public TypedGetOperation(String cacheName) {
+		super(cacheName);
 	}
 
 

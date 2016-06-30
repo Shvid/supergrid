@@ -24,4 +24,11 @@ import com.shvid.supergrid.api.SingleResult;
 
 public class ValueResult implements SingleResult {
 
+	@Override
+	public int get() {
+		return 0;
+	}
+
+	
+	
 }

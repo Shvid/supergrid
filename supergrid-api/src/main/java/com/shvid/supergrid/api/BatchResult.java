@@ -18,4 +18,6 @@ package com.shvid.supergrid.api;
 
 public interface BatchResult {
 
+	int get();
+	
 }

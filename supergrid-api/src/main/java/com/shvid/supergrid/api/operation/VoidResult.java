@@ -25,5 +25,12 @@ import com.shvid.supergrid.api.SingleResult;
 public enum VoidResult implements SingleResult {
 
 	VOID;
+
+	@Override
+	public int get() {
+		return 0;
+	}
+	
+	
 	
 }

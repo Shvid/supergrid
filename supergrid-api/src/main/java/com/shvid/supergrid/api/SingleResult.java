@@ -27,4 +27,6 @@ package com.shvid.supergrid.api;
 
 public interface SingleResult {
 
+	int get();
+	
 }
