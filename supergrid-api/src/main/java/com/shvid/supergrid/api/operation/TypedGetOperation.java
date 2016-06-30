@@ -11,19 +11,23 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.support.exception;
+package com.shvid.supergrid.api.operation;
 
+import com.shvid.supergrid.api.ClientOperations;
 
-public class FieldNotFoundException extends GeneralRuntimeException {
+/**
+ * Typed get operation
+ * 
+ * @author Alex Shvid
+ *
+ */
 
-	private static final long serialVersionUID = -3479975328011894739L;
+public class TypedGetOperation<E> extends AbstractOperation<TypedGetOperation<E>> {
 
-	public FieldNotFoundException(String fieldName) {
-		super(fieldName);
+	public TypedGetOperation(ClientOperations client, String cacheName) {
+		super(client, cacheName);
 	}
 
-	public FieldNotFoundException(String fieldName, Throwable t) {
-		super(fieldName, t);
-	}
 
+	
 }

@@ -16,13 +16,13 @@ package com.shvid.supergrid.api;
 import com.google.common.util.concurrent.ListenableFuture;
 
 /**
- * Result future
+ * Batch future
  * 
  * @author Alex Shvid
  *
  */
 
-public interface ResultFuture extends ListenableFuture<SingleResult> {
+public interface BatchFuture extends ListenableFuture<BatchResult> {
 
 	/**
 	 * Gets operation associated with future
@@ -30,6 +30,6 @@ public interface ResultFuture extends ListenableFuture<SingleResult> {
 	 * @return not null operation
 	 */
 	
-	SingleOperation getOperation();
+	BatchOperation getBatchOperation();
 	
 }

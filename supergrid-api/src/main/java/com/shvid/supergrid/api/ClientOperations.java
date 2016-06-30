@@ -13,7 +13,6 @@
  */
 package com.shvid.supergrid.api;
 
-import com.shvid.supergrid.api.operation.BatchOperation;
 import com.shvid.supergrid.api.operation.CompareAndSetOperation;
 import com.shvid.supergrid.api.operation.ExistOperation;
 import com.shvid.supergrid.api.operation.GetOperation;

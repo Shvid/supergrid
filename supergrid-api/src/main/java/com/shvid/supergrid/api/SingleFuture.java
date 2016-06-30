@@ -11,36 +11,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.shvid.supergrid.api.operation;
+package com.shvid.supergrid.api;
 
-import com.shvid.supergrid.api.ResultFuture;
-import com.shvid.supergrid.api.SingleOperation;
+import com.google.common.util.concurrent.ListenableFuture;
 
 /**
- * Batch Operation
- *  
+ * Single result future
+ * 
  * @author Alex Shvid
  *
  */
 
-public interface BatchOperation extends SingleOperation {
+public interface SingleFuture<O extends SingleOperation<O>> extends ListenableFuture<SingleResult> {
 
 	/**
-	 * Adds operation to the batch
+	 * Gets operation associated with future
 	 * 
-	 * @param operation
-	 * @return not null future
+	 * @return not null operation
 	 */
 	
-	ResultFuture add(SingleOperation operation);
-	
-	/**
-	 * Executes batch
-	 * 
-	 * @param timeoutMillis - timeout milliseconds
-	 * @return not null batch future
-	 */
-	
-	ResultFuture execute(int timeoutMillis);
+	O getSingleOperation();
 	
 }

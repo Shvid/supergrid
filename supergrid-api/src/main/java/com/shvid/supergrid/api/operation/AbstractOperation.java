@@ -14,8 +14,9 @@
 package com.shvid.supergrid.api.operation;
 
 import com.google.common.base.Preconditions;
+import com.shvid.supergrid.api.BatchOperation;
 import com.shvid.supergrid.api.ClientOperations;
-import com.shvid.supergrid.api.ResultFuture;
+import com.shvid.supergrid.api.SingleFuture;
 import com.shvid.supergrid.api.SingleOperation;
 
 /**
@@ -25,7 +26,7 @@ import com.shvid.supergrid.api.SingleOperation;
  *
  */
 
-public abstract class AbstractOperation<O extends AbstractOperation<O>> implements SingleOperation {
+public abstract class AbstractOperation<O extends SingleOperation<O>> implements SingleOperation<O> {
 
 	protected final ClientOperations client;
 	protected final String cacheName;
@@ -43,33 +44,30 @@ public abstract class AbstractOperation<O extends AbstractOperation<O>> implemen
 		return cacheName;
 	}
 
-	@SuppressWarnings("unchecked")
 	public O setSuperKey(String superKey) {
 		ensureNotExecutionPhase();
 		this.superKey = superKey;
-		return (O) this;
+		return castThis();
 	}
 	
 	public String getSuperKey() {
 		return superKey;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public O setMajorKey(String majorKey) {
 		ensureNotExecutionPhase();
 		this.majorKey = majorKey;
-		return (O) this;
+		return castThis();
 	}
 	
 	public String getMajorKey() {
 		return majorKey;
 	}
 
-	@SuppressWarnings("unchecked")
 	public O setMinorKey(String minorKey) {
 		ensureNotExecutionPhase();
 		this.minorKey = minorKey;
-		return (O) this;
+		return castThis();
 	}
 
 	public String getMinorKey() {
@@ -77,13 +75,14 @@ public abstract class AbstractOperation<O extends AbstractOperation<O>> implemen
 	}
 
 	@Override
-	public ResultFuture addToBatch(BatchOperation batch) {
+	public SingleFuture<O> addToBatch(BatchOperation batch) {
 		Preconditions.checkNotNull(batch, "null batch");
-		return batch.add(this);
+		SingleFuture<O> future = batch.add(castThis());
+		return future;
 	}
 
 	@Override
-	public ResultFuture execute(int timeoutMillis) {
+	public SingleFuture<O> execute(int timeoutMillis) {
 		this.executionPhase = true;
 		return null;
 	}
@@ -96,6 +95,11 @@ public abstract class AbstractOperation<O extends AbstractOperation<O>> implemen
 		if (executionPhase) {
 			throw new IllegalStateException("execution phase does not allow modificaitons in operation " + this);
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private O castThis() {
+		return (O) this;
 	}
 	
 }

@@ -15,35 +15,7 @@ package com.shvid.supergrid.api;
 
 
 
-/**
- * All operations in Supergrid are asynronous
- * 
- * Reactive programming
- * 
- * All operations are thread-safe
- * 
- * @author Alex Shvid
- *
- */
 
-public interface SingleOperation<O extends SingleOperation<O>> {
+public interface BatchResult {
 
-	/**
-	 * Adds this operation to the batch
-	 * 
-	 * @param batch - batch that will be executed
-	 * @return not null future
-	 */
-	
-	SingleFuture<O> addToBatch(BatchOperation batch);
-	
-	/**
-	 * Executes operation
-	 * 
-	 * @param timeoutMillis - timeout milliseconds
-	 * @return not null future
-	 */
-	
-	SingleFuture<O> execute(int timeoutMillis);
-	
 }
